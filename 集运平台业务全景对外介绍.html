@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>集运平台 · 业务全景与商业模式对外介绍</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{ --ink:#0f172a; --sub:#475569; --line:#e2e8f0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif; color:var(--ink); }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 20px; }
+  .sec{ padding:64px 0; border-bottom:1px solid var(--line); }
+  .sec-title{ font-size:13px; letter-spacing:.18em; color:#6366f1; font-weight:700; text-transform:uppercase; }
+  .sec-h{ font-size:30px; font-weight:800; margin:8px 0 6px; }
+  .sec-d{ color:var(--sub); max-width:760px; line-height:1.7; }
+  .card{ background:#fff; border:1px solid var(--line); border-radius:16px; transition:transform .15s, box-shadow .15s; }
+  .card:hover{ transform:translateY(-3px); box-shadow:0 12px 30px -12px rgba(15,23,42,.18); }
+  .node{ background:#fff; border:2px solid #e0e7ff; border-radius:14px; padding:14px 12px; text-align:center; min-width:100px; }
+  .arrow{ color:#cbd5e1; font-weight:700; font-size:20px; }
+  /* compact goods-flow pipeline — single line, no wrap */
+  .flow-wrap{ overflow-x:auto; -ms-overflow-style:none; scrollbar-width:none; }
+  .flow-wrap::-webkit-scrollbar{ display:none; }
+  .flow-row{ display:flex; flex-flow:row nowrap; align-items:stretch; justify-content:space-between; gap:4px; min-width:min-content; }
+  .flow-node{ flex:0 0 auto; width:92px; background:#fff; border:2px solid #a7f3d0; border-radius:10px; padding:7px 3px; text-align:center; }
+  .flow-node .ico{ font-size:17px; line-height:1; }
+  .flow-node .t{ font-weight:600; font-size:11px; margin-top:3px; color:#0f172a; }
+  .flow-node .s{ font-size:9px; margin-top:1px; color:#94a3b8; }
+  .flow-arrow{ flex:0 0 auto; color:#94a3b8; font-weight:700; font-size:13px; align-self:center; }
+  @media (max-width:768px){
+    .flow-node{ width:74px; }
+    .flow-node .ico{ font-size:14px; }
+    .flow-node .t{ font-size:10px; }
+  }
+  .pill{ display:inline-block; padding:2px 10px; border-radius:999px; font-size:12px; font-weight:600; }
+  .nav-link{ transition:color .15s; }
+  .nav-link:hover{ color:#4f46e5; }
+  .grad{ background:linear-gradient(135deg,#4f46e5 0%,#2563eb 55%,#0ea5e9 100%); }
+  .stat{ background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); }
+  .loop-arrow{ stroke:#f59e0b; stroke-width:2.5; fill:none; marker-end:url(#ah); }
+  /* BMC grid */
+  .bmc-cell{ border:1px solid var(--line); border-radius:10px; padding:14px; background:#fff; }
+  .bmc-h{ font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:800; margin-bottom:8px; display:block; }
+  .bmc-list{ list-style:none; padding:0; margin:0; }
+  .bmc-list li{ position:relative; padding-left:14px; font-size:13px; line-height:1.85; color:#334155; }
+  .bmc-list li::before{ content:"•"; position:absolute; left:0; color:#a78bfa; font-weight:700; }
+  @media print{
+    .no-print{ display:none !important; }
+    .sec{ padding:34px 0; break-inside:avoid; }
+    body{ font-size:12px; }
+    .card{ box-shadow:none; }
+  }
+</style>
+</head>
+<body class="bg-slate-50">
+
+<!-- ===== NAV ===== -->
+<header class="sticky top-0 z-30 no-print bg-white/90 backdrop-blur border-b border-slate-200">
+  <div class="wrap flex items-center justify-between h-14">
+    <div class="font-extrabold text-lg text-indigo-600">集运平台 <span class="text-slate-400 font-medium text-sm">· 业务全景</span></div>
+    <nav class="hidden md:flex gap-5 text-sm text-slate-600 font-medium">
+      <a class="nav-link" href="#customers">客户群体</a>
+      <a class="nav-link" href="#goods">货物流</a>
+      <a class="nav-link" href="#business">业务流</a>
+      <a class="nav-link" href="#capital">资金流</a>
+      <a class="nav-link" href="#model">商业模式</a>
+      <a class="nav-link" href="#scale">资本规划</a>
+      <a class="nav-link" href="#strategy">战略价值</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="grad text-white">
+  <div class="wrap py-20">
+    <div class="sec-title text-indigo-200">CROSS-BORDER CONSOLIDATION · 集运平台</div>
+    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mt-3">一端连接海外需求，一端整合国内供应链<br>用「集运 + 增值 + 分销」打通跨境履约</h1>
+    <p class="mt-5 text-indigo-100 text-lg max-w-2xl leading-relaxed">面向 6000 万海外华人与国货出海红利，我们以国内仓 + 数字化 WMS + 干线运力，提供从下单、收货、理货、集运到国际派送的一体化服务，并通过优质商品分销拓展客户价值边界。</p>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-10">
+      <div class="stat rounded-2xl p-5">
+        <div class="text-3xl font-extrabold">25%</div>
+        <div class="text-indigo-100 text-sm mt-1">空运综合毛利率</div>
+      </div>
+      <div class="stat rounded-2xl p-5">
+        <div class="text-3xl font-extrabold">≈ 847<span class="text-lg"> kg/月</span></div>
+        <div class="text-indigo-100 text-sm mt-1">空运月盈亏平衡</div>
+      </div>
+      <div class="stat rounded-2xl p-5 border border-white/30">
+        <div class="text-3xl font-extrabold">15%</div>
+        <div class="text-indigo-100 text-sm mt-1">海运综合毛利率</div>
+      </div>
+      <div class="stat rounded-2xl p-5 border border-white/30">
+        <div class="text-3xl font-extrabold">≈ 7.5<span class="text-lg"> 吨/月</span></div>
+        <div class="text-indigo-100 text-sm mt-1">海运月盈亏平衡</div>
+      </div>
+      <div class="stat rounded-2xl p-5">
+        <div class="text-3xl font-extrabold">¥88800<span class="text-lg"></span></div>
+        <div class="text-indigo-100 text-sm mt-1">研发投入（v1.0）</div>
+      </div>
+      <div class="stat rounded-2xl p-5">
+        <div class="text-3xl font-extrabold">3<span class="text-lg"> 人</span></div>
+        <div class="text-indigo-100 text-sm mt-1">稳态运营团队</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 1. 客户群体 ===== -->
+<section id="customers" class="sec">
+  <div class="wrap">
+    <div class="sec-title">WHO · 客户群体</div>
+    <h2 class="sec-h">谁在用我们的集运平台</h2>
+    <p class="sec-d">四类核心客群构成需求底座，从个人刚需到 B 端批量，覆盖面越广，单量天花板越高、获客成本越低。同时我们为不同客户提供<strong>优质商品分销</strong>服务，将国内优质货源精准匹配海外需求，延伸客户价值链。</p>
+    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5 mt-8">
+      <div class="card p-6">
+        <div class="text-4xl">🧳</div>
+        <h3 class="font-bold text-lg mt-3">海外华人 / 留学生</h3>
+        <p class="text-slate-500 text-sm mt-2 leading-relaxed">个人自寄、采购国货，高频刚需。看重时效、价格与中文客服。</p>
+        <div class="mt-4"><span class="pill bg-sky-100 text-sky-700">高频 · 个人</span></div>
+      </div>
+      <div class="card p-6">
+        <div class="text-4xl">🛍️</div>
+        <h3 class="font-bold text-lg mt-3">采购商户 / 买手</h3>
+        <p class="text-slate-500 text-sm mt-2 leading-relaxed">批量下单、稳定履约，对运费差价与拿价能力高度敏感。</p>
+        <div class="mt-4"><span class="pill bg-indigo-100 text-indigo-700">批量 · B 端</span></div>
+      </div>
+      <div class="card p-6">
+        <div class="text-4xl">🏬</div>
+        <h3 class="font-bold text-lg mt-3">小 B 跨境卖家</h3>
+        <p class="text-slate-500 text-sm mt-2 leading-relaxed">独立站 / 微商卖家，需要稳定的仓储、分装与一件代发履约。</p>
+        <div class="mt-4"><span class="pill bg-violet-100 text-violet-700">稳定 · 履约</span></div>
+      </div>
+      <div class="card p-6">
+        <div class="text-4xl">👥</div>
+        <h3 class="font-bold text-lg mt-3">社群团长 / 微商</h3>
+        <p class="text-slate-500 text-sm mt-2 leading-relaxed">社群集单、裂变获客，是低成本流量与预充值沉淀的关键节点。</p>
+        <div class="mt-4"><span class="pill bg-emerald-100 text-emerald-700">裂变 · 流量</span></div>
+      </div>
+      <div class="card p-6 bg-gradient-to-br from-orange-50 to-amber-50 border-orange-200">
+        <div class="text-4xl">🏷️</div>
+        <h3 class="font-bold text-lg mt-3 text-orange-700">优质商品分销</h3>
+        <p class="text-slate-500 text-sm mt-2 leading-relaxed">为海外客户提供精选国货分销，从源头把控品质与价格，拓宽客户消费场景。</p>
+        <div class="mt-4"><span class="pill bg-orange-100 text-orange-700">增值 · 分销</span></div>
+      </div>
+    </div>
+
+    <!-- 分销说明 -->
+    <div class="mt-8 rounded-2xl bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 p-6">
+      <div class="flex items-start gap-4">
+        <div class="text-3xl">🏷️</div>
+        <div>
+          <h4 class="font-bold text-orange-700 text-lg">优质商品分销 — 延伸客户价值链</h4>
+          <p class="text-slate-600 text-sm mt-2 leading-relaxed">平台不仅做物流履约，更整合国内优质货源（美妆、服饰、数码、家居等），为不同客群提供<strong>选品 → 集运 → 分销</strong>的一站式服务：</p>
+          <ul class="mt-3 space-y-1.5 text-sm text-slate-600">
+            <li><strong>个人客群：</strong>推荐高性价比国货单品，降低选购成本，提升客单价与复购率；</li>
+            <li><strong>B 端商户：</strong>批量货源直供，一件代发，支持贴牌/定制包装，助力其本地零售业务；</li>
+            <li><strong>社群团长：</strong>提供团购爆品方案与素材包，降低其运营门槛，增强粘性；</li>
+            <li><strong>独立站卖家：</strong>对接工厂级供应链，支持海外仓前置备货，缩短交付周期。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. 货物流 ===== -->
+<section id="goods" class="sec bg-white">
+  <div class="wrap">
+    <div class="sec-title text-emerald-600">GOODS FLOW · 货物流</div>
+    <h2 class="sec-h">一件商品如何完成跨境履约</h2>
+    <p class="sec-d">从海外客户下单到目的国派送完成，全链路 9 个节点可追溯。国内仓 + PDA 数字化作业（拆袋理货、上架、拣货、集运分装）是效率与准确率的保障。</p>
+
+    <!-- flow pipeline — single line, no wrap, compact boxes -->
+    <div class="mt-10 flow-wrap">
+      <div class="flow-row">
+        <div class="flow-node"><div class="ico">🌐</div><div class="t">海外下单</div><div class="s">收货单</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="ico">📦</div><div class="t">预报入库</div><div class="s">国内仓收货</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="ico">🔍</div><div class="t">拆袋理货</div><div class="s">DWS称重拍照</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="ico">📚</div><div class="t">上架在库</div><div class="s">库位管理</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="ico">🤝</div><div class="t">集运分装</div><div class="s">合箱/加固</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="ico">✈️</div><div class="t">国际干线</div><div class="s">航班运输</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="ico">🛃</div><div class="t">目的国清关</div><div class="s">合规申报</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="ico">🚚</div><div class="t">派送完成</div><div class="s">9态跟踪</div></div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5 mt-10">
+      <div class="rounded-2xl bg-emerald-50 border border-emerald-100 p-5">
+        <div class="font-bold text-emerald-700">国内作业（效率核心）</div>
+        <p class="text-slate-600 text-sm mt-2 leading-relaxed">预报入库 → 拆袋理货（PDA 扫单校验）→ 上架 → 在库。全程拍照称重留证，差错率与理赔风险可控。</p>
+      </div>
+      <div class="rounded-2xl bg-emerald-50 border border-emerald-100 p-5">
+        <div class="font-bold text-emerald-700">集运增值（利润核心）</div>
+        <p class="text-slate-600 text-sm mt-2 leading-relaxed">合箱、分装、加固、保价。增值服务毛利率 40%–70%，是比运费差价更厚的利润来源。</p>
+      </div>
+      <div class="rounded-2xl bg-emerald-50 border border-emerald-100 p-5">
+        <div class="font-bold text-emerald-700">国际履约（体验核心）</div>
+        <p class="text-slate-600 text-sm mt-2 leading-relaxed">干线运输 → 清关 → 派送，9 个状态全程轨迹可视，客户随时查询，确定性即口碑。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. 业务流 ===== -->
+<section id="business" class="sec">
+  <div class="wrap">
+    <div class="sec-title text-indigo-600">BUSINESS FLOW · 业务流</div>
+    <h2 class="sec-h">集运 + 增值 + 分销 的一体化闭环</h2>
+    <p class="sec-d">平台不是单点物流商，而是「需求聚合 → 供应链整合 → 履约交付 → 资金沉淀 → 复购裂变」的商业闭环。每一环都产生数据与客户粘性。</p>
+
+    <div class="card p-8 mt-8 bg-white">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+        <div class="node border-indigo-200 w-36 md:w-40"><div class="text-2xl">🛒</div><div class="font-semibold text-sm mt-1">① 下单</div><div class="text-xs text-slate-400 mt-1">需求聚合</div></div>
+        <div class="arrow">→</div>
+        <div class="node border-indigo-200 w-36 md:w-40"><div class="text-2xl">🏭</div><div class="font-semibold text-sm mt-1">② 国内收货</div><div class="text-xs text-slate-400 mt-1">仓储备货</div></div>
+        <div class="arrow">→</div>
+        <div class="node border-indigo-200 w-36 md:w-40"><div class="text-2xl">📦</div><div class="font-semibold text-sm mt-1">③ 仓储作业</div><div class="text-xs text-slate-400 mt-1">理货 / 上架</div></div>
+        <div class="arrow">→</div>
+        <div class="node border-indigo-200 w-36 md:w-40"><div class="text-2xl">✈️</div><div class="font-semibold text-sm mt-1">④ 集运履约</div><div class="text-xs text-slate-400 mt-1">分装 / 干线</div></div>
+      </div>
+      <div class="flex justify-center my-3"><span class="arrow">↓</span></div>
+      <div class="flex flex-col md:flex-row-reverse items-center justify-between gap-3">
+        <div class="node border-indigo-200 w-36 md:w-40"><div class="text-2xl">💰</div><div class="font-semibold text-sm mt-1">⑥ 资金沉淀</div><div class="text-xs text-slate-400 mt-1">预充值 / 利润</div></div>
+        <div class="arrow">←</div>
+        <div class="node border-indigo-200 w-36 md:w-40"><div class="text-2xl">🔁</div><div class="font-semibold text-sm mt-1">⑤ 复购裂变</div><div class="text-xs text-slate-400 mt-1">会员 / 转介绍</div></div>
+        <div class="node w-36 md:w-40 opacity-0"></div>
+        <div class="node w-36 md:w-40 opacity-0"></div>
+      </div>
+      <p class="text-center text-slate-500 text-sm mt-5">客户付费（运费 + 增值 + 分销 + 预充值）→ 平台沉淀资金 → 反哺运力采购与获客 → 老客裂变带来复购，闭环自增强。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. 资金流 + 测算表 ===== -->
+<section id="capital" class="sec bg-white">
+  <div class="wrap">
+    <div class="sec-title text-amber-600">CAPITAL & FINANCIALS · 资金流与测算</div>
+    <h2 class="sec-h">钱从哪里来、到哪里去、如何盈利</h2>
+    <p class="sec-d">集运的资本效率很高：客户<span class="font-semibold">先付费、后履约</span>，平台以预充值与运费沉淀形成无息资金池。以下测算基于实际运营参数，区分空运与海运两种运输方式。</p>
+
+    <!-- 测算数据表格 -->
+    <div class="mt-8 rounded-2xl overflow-hidden border border-slate-200">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-blue-50">
+            <th colspan="3" class="text-left px-4 py-3 font-bold text-blue-800">项目测算表：投入 / 人力 / 盈亏平衡</th>
+          </tr>
+          <tr class="bg-green-50">
+            <th class="text-left px-4 py-2 font-semibold text-green-800">首期总投入（第 1 年，金额元）</th>
+            <th class="text-center px-4 py-2 font-semibold text-green-800">金额</th>
+            <th class="text-left px-4 py-2 font-semibold text-green-800">说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2 font-medium">研发（v1.0）</td>
+            <td class="px-4 py-2 text-center font-bold text-red-600">88800</td>
+            <td class="px-4 py-2 text-slate-500">系统开发与运维</td>
+          </tr>
+          <tr class="bg-yellow-100 border-b">
+            <td colspan="3" class="px-4 py-2 font-bold text-center text-yellow-900">人力配置（稳态运营）</td>
+          </tr>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2 pl-8">板块</td>
+            <td class="px-4 py-2 text-center font-medium">人数</td>
+            <td class="px-4 py-2 text-slate-500">备注</td>
+          </tr>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2 pl-8">研发团队</td>
+            <td class="px-4 py-2 text-center">1</td>
+            <td class="px-4 py-2 text-slate-500">¥10,000</td>
+          </tr>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2 pl-8">客服</td>
+            <td class="px-4 py-2 text-center">1</td>
+            <td class="px-4 py-2 text-slate-500">¥2,000</td>
+          </tr>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2 pl-8">运营</td>
+            <td class="px-4 py-2 text-center">1</td>
+            <td class="px-4 py-2 text-slate-500">¥6,000</td>
+          </tr>
+          <tr class="bg-yellow-300 border-b">
+            <td class="px-4 py-2 pl-8 font-bold">合计</td>
+            <td class="px-4 py-2 text-center font-bold">3</td>
+            <td class="px-4 py-2 font-bold text-right">¥18,000</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 空运场景 -->
+      <table class="w-full text-sm border-t-2 border-slate-300">
+        <thead>
+          <tr class="bg-green-50">
+            <th colspan="3" class="text-left px-4 py-3 font-bold text-green-800">单包裹经济模型与盈亏平衡（基准情形 · 空运）</th>
+          </tr>
+          <tr class="bg-green-50">
+            <th class="text-left px-4 py-2 font-semibold text-green-800">假设参数（基准情形）</th>
+            <th class="text-center px-4 py-2 font-semibold text-green-800">取值</th>
+            <th class="text-left px-4 py-2 font-semibold text-green-800">运输方式</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2">单包裹综合收入（运费+操作+增值）</td>
+            <td class="px-4 py-2 text-center font-bold">85</td>
+            <td class="px-4 py-2 bg-yellow-200 font-bold text-yellow-900">空运</td>
+          </tr>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2">综合毛利率</td>
+            <td class="px-4 py-2 text-center font-bold">25%</td>
+            <td class="px-4 py-2"></td>
+          </tr>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2 font-bold">每公斤毛利</td>
+            <td class="px-4 py-2 text-center font-bold text-orange-600 bg-orange-100">21.25</td>
+            <td class="px-4 py-2"></td>
+          </tr>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2">月固定成本</td>
+            <td class="px-4 py-2 text-center">18,000</td>
+            <td class="px-4 py-2"></td>
+          </tr>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2 font-bold">月盈亏平衡重量（KG）</td>
+            <td class="px-4 py-2 text-center font-bold text-orange-600 bg-orange-100">847</td>
+            <td class="px-4 py-2"></td>
+          </tr>
+          <tr class="hover:bg-yellow-50">
+            <td class="px-4 py-2 font-bold">年盈亏平衡重量（吨）</td>
+            <td class="px-4 py-2 text-center font-bold text-orange-600 bg-orange-100">10</td>
+            <td class="px-4 py-2"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- 海运场景 -->
+      <table class="w-full text-sm border-t-2 border-slate-300">
+        <thead>
+          <tr class="bg-green-50">
+            <th colspan="3" class="text-left px-4 py-3 font-bold text-green-800">单包裹经济模型与盈亏平衡（基准情形 · 海运）</th>
+          </tr>
+          <tr class="bg-green-50">
+            <th class="text-left px-4 py-2 font-semibold text-green-800">假设参数（基准情形）</th>
+            <th class="text-center px-4 py-2 font-semibold text-green-800">取值</th>
+            <th class="text-left px-4 py-2 font-semibold text-green-800">运输方式</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2">单包裹综合收入（运费+操作+增值）</td>
+            <td class="px-4 py-2 text-center font-bold">16</td>
+            <td class="px-4 py-2 bg-yellow-200 font-bold text-yellow-900">海运</td>
+          </tr>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2">综合毛利率</td>
+            <td class="px-4 py-2 text-center font-bold">15%</td>
+            <td class="px-4 py-2"></td>
+          </tr>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2 font-bold">每公斤毛利</td>
+            <td class="px-4 py-2 text-center font-bold text-orange-600 bg-orange-100">2.4</td>
+            <td class="px-4 py-2"></td>
+          </tr>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2">月固定成本</td>
+            <td class="px-4 py-2 text-center">18,000</td>
+            <td class="px-4 py-2"></td>
+          </tr>
+          <tr class="border-b hover:bg-yellow-50">
+            <td class="px-4 py-2 font-bold">月盈亏平衡重量（吨）</td>
+            <td class="px-4 py-2 text-center font-bold text-orange-600 bg-orange-100">7.50</td>
+            <td class="px-4 py-2"></td>
+          </tr>
+          <tr class="hover:bg-yellow-50">
+            <td class="px-4 py-2 font-bold">年盈亏平衡重量（吨）</td>
+            <td class="px-4 py-2 text-center font-bold text-orange-600 bg-orange-100">90.00</td>
+            <td class="px-4 py-2"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 资金飞轮 -->
+    <div class="grid lg:grid-cols-2 gap-10 mt-10 items-center">
+      <div class="flex justify-center">
+        <svg viewBox="0 0 360 360" width="320" height="320" role="img" aria-label="资金循环">
+          <defs>
+            <marker id="ah" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+              <path d="M0,0 L7,3 L0,6 Z" fill="#f59e0b"></path>
+            </marker>
+          </defs>
+          <circle cx="180" cy="180" r="110" fill="#fffbeb" stroke="#fcd34d" stroke-width="2" stroke-dasharray="4 4"></circle>
+          <text x="180" y="172" text-anchor="middle" font-size="14" font-weight="800" fill="#b45309">资金沉淀</text>
+          <text x="180" y="190" text-anchor="middle" font-size="11" fill="#92400e">预充值 + 利润</text>
+          <g font-size="10" font-weight="700" text-anchor="middle">
+            <circle cx="180" cy="64" r="32" fill="#fff" stroke="#f59e0b" stroke-width="2"></circle>
+            <text x="180" y="62">①客户预付</text><text x="180" y="74">运费/充值</text>
+            <circle cx="292" cy="180" r="32" fill="#fff" stroke="#f59e0b" stroke-width="2"></circle>
+            <text x="292" y="178">②收入</text><text x="292" y="190">运费+增值</text>
+            <circle cx="180" cy="296" r="32" fill="#fff" stroke="#f59e0b" stroke-width="2"></circle>
+            <text x="180" y="294">③关税垫付</text><text x="180" y="306">周转</text>
+            <circle cx="68" cy="180" r="32" fill="#fff" stroke="#f59e0b" stroke-width="2"></circle>
+            <text x="68" y="178">④汇差/佣金</text><text x="68" y="190">利润</text>
+          </g>
+          <path class="loop-arrow" d="M180,96 A84,84 0 0,1 262,180"></path>
+          <path class="loop-arrow" d="M262,180 A84,84 0 0,1 180,264"></path>
+          <path class="loop-arrow" d="M180,264 A84,84 0 0,1 98,180"></path>
+          <path class="loop-arrow" d="M98,180 A84,84 0 0,1 180,96"></path>
+          <path class="loop-arrow" d="M180,108 L180,148"></path>
+          <path class="loop-arrow" d="M260,180 L214,180"></path>
+          <path class="loop-arrow" d="M180,250 L180,210"></path>
+          <path class="loop-arrow" d="M100,180 L146,180"></path>
+        </svg>
+      </div>
+      <div>
+        <div class="font-bold text-amber-700 mb-3">收入结构（典型占比）</div>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-sm"><span>国际运费差价</span><span class="text-slate-500">60%–70% 收入 · 毛利 10–25%</span></div>
+            <div class="h-3 bg-slate-100 rounded-full mt-1 overflow-hidden"><div class="h-full bg-amber-400" style="width:65%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm"><span>仓储 / 操作 / 挂号</span><span class="text-slate-500">8%–15% 收入 · 毛利 40–70%</span></div>
+            <div class="h-3 bg-slate-100 rounded-full mt-1 overflow-hidden"><div class="h-full bg-amber-500" style="width:12%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm"><span>分销佣金</span><span class="text-slate-500">视分销占比</span></div>
+            <div class="h-3 bg-slate-100 rounded-full mt-1 overflow-hidden"><div class="h-full bg-amber-600" style="width:6%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm"><span>关税代缴汇差</span><span class="text-slate-500">2%–5% 收入</span></div>
+            <div class="h-3 bg-slate-100 rounded-full mt-1 overflow-hidden"><div class="h-full bg-amber-300" style="width:4%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm"><span>保险 / 增值 / 分销</span><span class="text-slate-500">1%–3% 收入</span></div>
+            <div class="h-3 bg-slate-100 rounded-full mt-1 overflow-hidden"><div class="h-full bg-amber-200" style="width:3%"></div></div>
+          </div>
+        </div>
+        <div class="mt-5 rounded-xl bg-amber-50 border border-amber-100 p-4 text-sm text-slate-700 leading-relaxed">
+          <b class="text-amber-700">资金飞轮：</b>预收运费消除账期 → 预充值沉淀无息资金 → 规模拿价压低干线成本 → 汇差与增值增厚利润 → 利润反哺获客与运力，单量越大飞轮越快。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. 商业模式 (BMC) —— 按 screenshot 美化润色 ===== -->
+<section id="model" class="sec">
+  <div class="wrap">
+    <div class="sec-title text-violet-600">BUSINESS MODEL CANVAS · 商业模式画布</div>
+    <h2 class="sec-h">一张画布看懂盈利逻辑</h2>
+    <p class="sec-d">基于 Osterwalder 九宫格模型，完整呈现集运平台的商业要素。核心盈利支点在运费差价（60–70% 收入占比）、增值操作收费与汇差收益，而非单纯打价格战。</p>
+
+    <!-- Row 1: Key Partners | Key Activities | Value Proposition | Customer Relationships | Channels -->
+    <div class="grid grid-cols-5 gap-2 mt-8">
+      <div class="bmc-cell col-span-1">
+        <span class="bmc-h text-blue-600">① 核心资源<br><small class="font-normal text-slate-400">Key Resources</small></span>
+        <ul class="bmc-list">
+          <li>国内集运仓</li>
+          <li>海外合作集货点</li>
+          <li>干线低价运力</li>
+          <li>IT 系统（WMS/OMS/TMS）</li>
+          <li>清关能力</li>
+        </ul>
+      </div>
+      <div class="bmc-cell col-span-1">
+        <span class="bmc-h text-blue-600">② 关键业务<br><small class="font-normal text-slate-400">Key Activities</small></span>
+        <ul class="bmc-list">
+          <li>仓储作业（收货/理货/上架/拣货/打包/出库）</li>
+          <li>系统研发与运维</li>
+          <li>流量获取与转化</li>
+          <li>清关履约与客服</li>
+        </ul>
+      </div>
+      <div class="bmc-cell col-span-1 bg-gradient-to-br from-violet-50 to-fuchsia-50 border-violet-200">
+        <span class="bmc-h text-violet-700">④ 价值主张<br><small class="font-normal text-slate-400">Value Propositions</small></span>
+        <ul class="bmc-list">
+          <li>一口价透明运费试算（运费计算器），杜绝隐性收费</li>
+          <li>集运·履约一体化</li>
+          <li>省镜（免费仓储）</li>
+          <li>PDA 数字化仓储，作业高效</li>
+          <li>轨迹全程可查</li>
+          <li>清差实价，中文客服，多语支持</li>
+          <li>客制各种个性化打包操作（分装、加固等）</li>
+        </ul>
+      </div>
+      <div class="bmc-cell col-span-1">
+        <span class="bmc-h text-pink-600">③ 客户关系<br><small class="font-normal text-slate-400">Customer Relationships</small></span>
+        <ul class="bmc-list">
+          <li>通过 AI 自然对话 + 专属客服</li>
+          <li>会员积分、预充值沉淀</li>
+          <li>社群运营、复购激励（满减/免首重）</li>
+          <li>FB 等社交媒体互动</li>
+        </ul>
+      </div>
+      <div class="bmc-cell col-span-1">
+        <span class="bmc-h text-cyan-600">⑤ 渠道通路<br><small class="font-normal text-slate-400">Channels</small></span>
+        <ul class="bmc-list">
+          <li>客户自助小程序 / H5（C 端自助下单）</li>
+          <li>微信群、小红书、抖音内容引流</li>
+          <li>海外网点推广，发展当地加盟商</li>
+          <li>国内同行</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Row 2: Customer Segments | Cost Structure | Revenue Streams (with Key Partners) -->
+    <div class="grid grid-cols-5 gap-2 mt-2">
+      <div class="bmc-cell col-span-1 bg-gradient-to-br from-teal-50 to-emerald-50 border-teal-200">
+        <span class="bmc-h text-teal-700">⑥ 客户细分<br><small class="font-normal text-slate-400">Customer Segments</small></span>
+        <ul class="bmc-list">
+          <li><b>C 端华人：</b>海外华人、留学生、移民家庭。海外华人群体约 6000 万+，在淘宝/1688/京东采购国货需跨境集运</li>
+          <li><b>小 B 商家：</b>外贸采购、微商、华人超市。批量采购需稳定服务能力</li>
+          <li>市场策略表：货源、退换货中转、海外仓前置集运需求，尤其是独立站卖家</li>
+        </ul>
+      </div>
+      <div class="bmc-cell col-span-1 bg-slate-50">
+        <span class="bmc-h text-slate-600">⑦ 成本结构<br><small class="font-normal text-slate-400">Cost Structure</small></span>
+        <ul class="bmc-list">
+          <li>国际运输运费（最大头，约占收入 60–70%，交付给承运商）</li>
+          <li>仓库租金 + 人工（理货/拣货/上架/劳力/物流费）</li>
+          <li>系统研发与运维、营销获客</li>
+          <li>清关与关税、垫付资金成本</li>
+        </ul>
+      </div>
+      <div class="bmc-cell col-span-1 bg-gradient-to-br from-rose-50 to-orange-50 border-rose-200">
+        <span class="bmc-h text-rose-700">⑨ 收入来源<br><small class="font-normal text-slate-400">Revenue Streams</small></span>
+        <ul class="bmc-list">
+          <li><b>国际运费差价（核心）</b></li>
+          <li>包装 / 操作 / 分装 / 加固费</li>
+          <li>各代理代缴汇差、出口报关、目的国清关优势</li>
+          <li>保险、会员充值沉淀资金</li>
+        </ul>
+      </div>
+      <div class="bmc-cell col-span-2 bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-200">
+        <span class="bmc-h text-amber-700">⑧ 关键合作伙伴<br><small class="font-normal text-slate-400">Key Partnerships</small></span>
+        <ul class="bmc-list">
+          <li>国际承运商（DHL/FedEx/UPS/其他）、清关行</li>
+          <li>国内仓库、跨境支付</li>
+          <li>工厂级别供应链</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6. 资本扩大规划 ===== -->
+<section id="scale" class="sec bg-white">
+  <div class="wrap">
+    <div class="sec-title text-blue-600">SCALING PLAN · 资本扩大规划</div>
+    <h2 class="sec-h">三阶段路线图与规模杠杆</h2>
+    <p class="sec-d">从轻资产验证到规模杠杆，再到第二曲线。每一阶段都有清晰的单量目标与资金用途，资本随单量增长逐级放大。</p>
+
+    <!-- timeline -->
+    <div class="relative mt-10 pl-6 border-l-2 border-blue-200 space-y-8">
+      <div class="relative">
+        <div class="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-blue-500 border-4 border-white shadow"></div>
+        <div class="flex flex-wrap items-baseline gap-3">
+          <span class="text-blue-600 font-extrabold text-lg">阶段一 · 0–5 月（MVP）</span>
+          <span class="pill bg-blue-100 text-blue-700">验证闭环</span>
+        </div>
+        <p class="text-slate-600 text-sm mt-2 leading-relaxed">借第三方仓轻资产起步；上线收货 + 集运分装 + 轨迹；小范围种子用户跑通模型。<b>目标：闭环跑通、验证单位经济。</b></p>
+      </div>
+      <div class="relative">
+        <div class="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-indigo-500 border-4 border-white shadow"></div>
+        <div class="flex flex-wrap items-baseline gap-3">
+          <span class="text-indigo-600 font-extrabold text-lg">阶段二 · 6–12 月（v1.0）</span>
+          <span class="pill bg-indigo-100 text-indigo-700">盈亏平衡</span>
+        </div>
+        <p class="text-slate-600 text-sm mt-2 leading-relaxed">PDA 仓储数字化、多语、财务计费、营销上线；冲刺 <b>月 847 kg（空运）/ 月 7.5 吨（海运）</b> 盈亏平衡。首期预算 ¥88800（研发）+ ¥18,000/月（人力）。</p>
+      </div>
+      <div class="relative">
+        <div class="absolute -left-[31px] top-1 w-5 h-5 rounded-full bg-sky-500 border-4 border-white shadow"></div>
+        <div class="flex flex-wrap items-baseline gap-3">
+          <span class="text-sky-600 font-extrabold text-lg">阶段三 · 13–24 月（规模化）</span>
+          <span class="pill bg-sky-100 text-sky-700">规模杠杆</span>
+        </div>
+        <p class="text-slate-600 text-sm mt-2 leading-relaxed">直签承运商框架价压低干线成本；扩仓提产能；会员订阅 + 供应链金融延伸为第二曲线。<b>目标：单量突破后的显著规模杠杆。</b></p>
+      </div>
+    </div>
+
+    <!-- capital leverage -->
+    <div class="grid md:grid-cols-3 gap-5 mt-10">
+      <div class="rounded-2xl bg-blue-50 border border-blue-100 p-5">
+        <div class="font-bold text-blue-700">资本放大路径</div>
+        <p class="text-slate-600 text-sm mt-2 leading-relaxed">自有/天使 ¥10 万级验证 → A 轮扩仓与运力直签 → B 轮海外仓与供应链金融，资本随单量逐级放大。</p>
+      </div>
+      <div class="rounded-2xl bg-blue-50 border border-blue-100 p-5">
+        <div class="font-bold text-blue-700">规模杠杆</div>
+        <p class="text-slate-600 text-sm mt-2 leading-relaxed">单量↑ → 干线拿价↑ → 运费毛利↑；预充值池↑ → 资金成本↓；增值渗透↑ → 综合毛利↑。</p>
+      </div>
+      <div class="rounded-2xl bg-blue-50 border border-blue-100 p-5">
+        <div class="font-bold text-blue-700">第二曲线</div>
+        <p class="text-slate-600 text-sm mt-2 leading-relaxed">会员订阅（稳定 ARR）+ 供应链金融（关税垫付变利润）+ 增值 SaaS 输出，打开天花板。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. 战略价值 ===== -->
+<section id="strategy" class="sec">
+  <div class="wrap">
+    <div class="sec-title text-rose-600">STRATEGIC VALUE · 战略价值</div>
+    <h2 class="sec-h">给集团带来的多维战略价值</h2>
+    <p class="sec-d">集运项目不仅是独立的跨境物流业务，更是集团能力外溢与生态协同的战略支点——从仓储能力输出到客户群体扩展，再到 ABW 项目协同与前期铺垫。</p>
+
+    <div class="space-y-4 mt-8">
+      <div class="card p-5 flex items-start gap-4 border-l-4 border-l-rose-400">
+        <div class="text-2xl shrink-0">🏭</div>
+        <div>
+          <h4 class="font-bold text-rose-700">仓库操作能力外溢 — 对外做「整进散出」电商操作仓服务</h4>
+          <p class="text-slate-600 text-sm mt-1 leading-relaxed">公司仓库的操作能力提升后，可以对外承接电商操作仓服务（整进散出模式），将内部标准化作业能力产品化，形成新的收入来源和行业影响力。</p>
+        </div>
+      </div>
+      <div class="card p-5 flex items-start gap-4 border-l-4 border-l-orange-400">
+        <div class="text-2xl shrink-0">👥</div>
+        <div>
+          <h4 class="font-bold text-orange-700">面向直客群体 — 扩大公司客户类型</h4>
+          <p class="text-slate-600 text-sm mt-1 leading-relaxed">通过集运服务直接触达海外终端消费者（C 端华人、留学生等），打破原有 B 端为主的客户结构，增加公司客户群体的多样性与抗风险能力。</p>
+        </div>
+      </div>
+      <div class="card p-5 flex items-start gap-4 border-l-4 border-l-amber-400">
+        <div class="text-2xl shrink-0">🏷️</div>
+        <div>
+          <h4 class="font-bold text-amber-700">商品分销前期准备 — 为海外用户做商品分销铺路</h4>
+          <p class="text-slate-600 text-sm mt-1 leading-relaxed">集运业务积累的海外客户信任关系、物流履约网络与支付通道，为公司后续面向海外用户提供<strong>优质商品分销</strong>服务做好充分的前期准备工作，降低新业务冷启动成本。</p>
+        </div>
+      </div>
+      <div class="card p-5 flex items-start gap-4 border-l-4 border-l-emerald-400">
+        <div class="text-2xl shrink-0">🔗</div>
+        <div>
+          <h4 class="font-bold text-emerald-700">ABW 项目协同 — 独立经营构建 + 更好集运到 ABW</h4>
+          <p class="text-slate-600 text-sm mt-1 leading-relaxed">给 ABW 项目做好独立经营的架构构建，同时可以提供更好的集运服务到 ABW 体系内，实现两个项目的资源复用与流量互导，形成 1+1 > 2 的协同效应。</p>
+        </div>
+      </div>
+      <div class="card p-5 flex items-start gap-4 border-l-4 border-l-blue-400">
+        <div class="text-2xl shrink-0">💰</div>
+        <div>
+          <h4 class="font-bold text-blue-700">低成本起步 — 资源基建已具备</h4>
+          <p class="text-slate-600 text-sm mt-1 leading-relaxed">公司起步所需的资源和基建事项均已就绪（仓库、IT 系统、运力渠道、清关能力），起步做集运的投入成本不高，属于<strong>低风险、高杠杆</strong>的增量业务。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 战略总结 -->
+    <div class="mt-8 rounded-2xl bg-gradient-to-r from-rose-50 via-orange-50 to-amber-50 border border-rose-200 p-6">
+      <div class="text-sm font-bold text-rose-700 mb-2">战略总结</div>
+      <p class="text-slate-700 text-sm leading-relaxed">集运项目是集团在跨境赛道上的<strong>战略支点</strong>：它既是一块能快速验证并产生正向现金流的独立业务，又是仓储能力外溢、客户结构优化、ABW 协同与商品分销布局的前哨阵地。投入小、见效快、协同大，是典型的「低风险高杠杆」增量机会。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="grad text-white">
+  <div class="wrap py-14 text-center">
+    <div class="text-sm text-indigo-200 font-semibold mb-2">给决策者的三句话</div>
+    <ul class="max-w-2xl mx-auto space-y-2 text-white font-medium text-left inline-block">
+      <li>① 需求真实且增长：6000 万海外华人 + 国货出海，技术成熟、原型已验证；</li>
+      <li>② 盈利健康可控：空运月 847 kg / 海运月 7.5 吨即可盈亏平衡，风险均有对冲；</li>
+      <li>③ 战略价值明确：仓储外溢 + 直客触达 + ABW 协同 + 分销铺垫，低投入高杠杆。</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="text-center text-slate-400 text-sm py-10 no-print">
+  集运平台 · 业务全景与商业模式对外介绍（基于 PCS.html 原型内容整理）· 数据以运营验证为准
+</footer>
+
+</body>
+</html>

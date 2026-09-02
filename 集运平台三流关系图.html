@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>集运平台三流关系图</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#f7f8fa;color:#222;min-width:1280px}
+.page{max-width:1200px;margin:0 auto;padding:28px 24px 50px}
+
+.h1{text-align:center;font-size:22px;font-weight:700;letter-spacing:.5px;color:#1f2937}
+.sub{text-align:center;font-size:14px;color:#6b7280;margin-top:5px;margin-bottom:22px}
+
+.legend{display:flex;justify-content:center;gap:32px;margin-bottom:22px;font-size:14px;color:#374151}
+.lg{display:flex;align-items:center;gap:8px}
+.bar{width:26px;height:4px;border-radius:2px}
+.bD{background:#3b82f6}.bF{background:#ef4444}.bL{background:#10b981}
+
+/* 三列布局 */
+.arch{display:flex;justify-content:center;gap:20px;position:relative}
+.box{border:1.5px solid #d2d6dd;border-radius:12px;background:#fff;padding:16px 16px 14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.box-h{text-align:center;font-size:15px;font-weight:700;padding-bottom:9px;margin-bottom:11px;border-bottom:1px solid #eceef1;color:#1f2937}
+.bC{width:300px}.bP{width:380px}.bF{width:300px}
+
+.n{display:flex;justify-content:space-between;align-items:center;gap:8px;
+  border:1px solid #cfd4db;background:#f6f7f9;border-radius:8px;padding:8px 11px;font-size:13px;font-weight:500;margin-bottom:8px;color:#374151}
+.n.root{background:#eef2f7;border-color:#9fb0c2;font-weight:700;color:#1f2937}
+.n.sub{background:#fff;border-color:#d8dde3;font-size:12.5px}
+.n.pm{background:#eef4fd;border-color:#a8c2e6;color:#1e40af}
+.n.fw{background:#f2f8ee;border-color:#b3cca0;color:#166534}
+.n.lp{background:#fef9e7;border-color:#d4b106;color:#854d0e}
+.n.big{justify-content:center;font-weight:700;font-size:13.5px;background:#fff7f6;border-color:#f3b5ad;color:#b42318}
+
+.tree{margin:7px 0 9px;padding:9px 9px 9px 13px;border-left:2px dashed #c8a0a0;margin-left:5px}
+.tnode{border:1px solid #d8b4b4;background:#fdf6f5;border-radius:6px;padding:4px 10px;font-size:12.5px;font-weight:500;display:inline-block;margin-bottom:4px;color:#92400e}
+.tarrow{font-size:11.5px;color:#ba5a5a;text-align:center;margin:2px 0 4px 9px;font-weight:500}
+
+.wh-grp{display:flex;gap:8px}
+.wh-grp .n{margin-bottom:0}
+
+/* 底部资金清算区 */
+.settle{margin-top:26px;border:1.5px solid #f0b4ae;border-radius:12px;background:#fff8f7;padding:18px 20px;max-width:1060px;margin-left:auto;margin-right:auto;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.settle-h{font-size:15px;font-weight:700;color:#b42318;margin-bottom:13px}
+.flowrow{display:flex;align-items:center;gap:0;flex-wrap:nowrap}
+.fn{display:flex;flex-direction:column;align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:9px 13px;min-width:120px;text-align:center}
+.fn b{font-size:13.5px}.fn span{font-size:12px;color:#666;margin-top:2px}
+.arrow-red{color:#ef4444;font-size:22px;padding:0 7px}
+.arrow-gray{color:#b9b9b9;font-size:18px;padding:0 5px}
+.note{font-size:13px;color:#555;margin-top:13px;line-height:1.7;display:flex;flex-wrap:wrap;gap:9px}
+.note span{flex:1 1 0;min-width:190px;padding:9px 12px;border:1px solid #f0c0c0;border-left:4px solid #ef4444;border-radius:7px;background:#fff6f6;font-size:13px;color:#333}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="h1">集运平台 · 三流关系图</div>
+<div class="sub">客户 — 集运平台（清算中枢）— 集运商 · 数据流 / 资金流 / 派单流</div>
+
+<div class="legend">
+  <div class="lg"><div class="bar bD"></div>数据 / 信息流</div>
+  <div class="lg"><div class="bar bF"></div>资金流</div>
+  <div class="lg"><div class="bar bL"></div>派单（物流分配）</div>
+</div>
+
+<div class="arch">
+  <div class="box bC">
+    <div class="box-h">客户</div>
+    <div class="n root">华人代购</div>
+    <div class="n root">美国人 / ABC</div>
+    <div class="n root">货代同行</div>
+    <div class="n root">杂货店（批发商）</div>
+    <div class="tree">
+      <div class="tnode">客户（直客）</div>
+      <div class="tarrow">↓ 发展代理（下线）</div>
+      <div class="tnode">代理 / 下线</div>
+      <div class="tarrow">↓ 继续发展</div>
+      <div class="tnode">二级代理</div>
+    </div>
+  </div>
+
+  <div class="box bP">
+    <div class="box-h">集运平台（清算中枢）</div>
+    <div class="n pm">设置客户加盟</div>
+    <div class="n pm">营销 / 运营</div>
+    <div class="n pm">集运商工具</div>
+    <div class="n pm">客户工具</div>
+    <div class="n big">平台结算账户 / 佣金引擎 / 派单引擎</div>
+    <div class="n pm">佣金体系（按客户设置）</div>
+    <div class="n pm">平台派单（策略路由）</div>
+    <div class="n pm">设置集运商加盟</div>
+    <div class="n pm">集运商端口</div>
+  </div>
+
+  <div class="box bF">
+    <div class="box-h">集运商</div>
+    <div style="margin-bottom:7px">
+      <div class="n root">集运商 A</div>
+      <div class="wh-grp">
+        <div class="n fw">仓库 A</div>
+        <div class="n fw">仓库 B</div>
+      </div>
+      <div class="wh-grp" style="margin-top:6px">
+        <div class="n lp">物流产品 A</div>
+        <div class="n lp">物流产品 B</div>
+      </div>
+    </div>
+    <div>
+      <div class="n root">集运商 B</div>
+      <div class="wh-grp">
+        <div class="n fw">仓库 A</div>
+        <div class="n fw">仓库 B</div>
+      </div>
+      <div class="wh-grp" style="margin-top:6px">
+        <div class="n lp">物流产品 A</div>
+        <div class="n lp">物流产品 B</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 资金清算区 -->
+<div class="settle">
+  <div class="settle-h">资金清算关系（核心）</div>
+  <div class="flowrow">
+    <div class="fn"><b>客户 / 代理</b><span>收取运费</span></div>
+    <div class="arrow-red">&#10140;</div>
+    <div class="fn" style="min-width:170px"><b>平台结算账户</b><span>归集运费 · 计算佣金 · 收入确认</span></div>
+    <div class="arrow-red">&#10140;</div>
+    <div class="fn"><b>集运商</b><span>仓储操作 + 物流渠道结算</span></div>
+  </div>
+  <div class="flowrow" style="margin-top:10px">
+    <div class="fn"><b>平台结算账户</b><span>按佣金体系计算</span></div>
+    <div class="arrow-red">&#10140;</div>
+    <div class="fn"><b>客户 / 代理账户</b><span>返还佣金 · 可提现</span></div>
+    <div class="arrow-gray">（</div>
+    <div class="fn"><b>提现申请</b><span>客户 / 代理 → 平台</span></div>
+    <div class="arrow-gray">）</div>
+  </div>
+  <div class="note">
+    <span>① 客户发展代理（下线），代理收取运费进入<b>平台账户</b></span>
+    <span>② 平台按佣金体系计算佣金，返还至<b>客户 / 代理账户</b></span>
+    <span>③ 客户与代理均可<b>申请提现</b>，与平台结算收入</span>
+    <span>④ 平台按派单策略将收货单分配到不同集运商仓库</span>
+    <span>⑤ 集运商按操作服务 + 物流渠道与平台结算</span>
+    <span>⑥ 成本：平台与集运商结算（仓储费 + 物流渠道费）</span>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

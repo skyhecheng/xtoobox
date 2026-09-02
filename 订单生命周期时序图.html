@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>ABW 订单生命周期 UML 时序图</title>
+<style>
+  body{margin:0;background:#f1f5f9;display:flex;justify-content:center;padding:24px;}
+  .card{background:#fff;border-radius:14px;box-shadow:0 6px 24px rgba(15,23,42,.08);padding:18px;max-width:1380px;}
+  h2{margin:0 0 4px;color:#0f172a;font-size:18px;}
+  p.sub{margin:0 0 14px;color:#64748b;font-size:13px;}
+</style>
+</head>
+<body>
+  <div class="card">
+    <h2>ABW 订单生命周期 · UML 时序图</h2>
+    <p class="sub">购物系统 · 买手系统/集运客户端系统 · 集运系统 三系统协同：下单采购 → 入库上架 → 云仓查询 → 国际运单与轨迹跟踪</p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1340" height="2190" viewBox="0 0 1340 2190" font-family="-apple-system,'PingFang SC','Microsoft YaHei',Segoe UI,Helvetica,Arial,sans-serif">
+<defs>
+  <marker id="arr" markerWidth="11" markerHeight="11" refX="9" refY="3.2" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L9,3.2 L0,6.4 Z" fill="#334155"/></marker>
+</defs>
+<rect x="0" y="0" width="1340" height="2190" fill="#ffffff"/>
+<text x="670.0" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">ABW 订单生命周期 · UML 时序图</text>
+<text x="670.0" y="56" text-anchor="middle" font-size="13" fill="#64748b">ABW 由三大系统组成：购物系统 · 买手系统/集运客户端系统 · 集运系统</text>
+<rect x="52.0" y="68" width="116.0" height="44" rx="8" fill="#1e3a8a" stroke="#1e40af"/>
+<text x="110" y="92" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">美国C端客户</text>
+<rect x="242.0" y="68" width="116.0" height="44" rx="8" fill="#1e3a8a" stroke="#1e40af"/>
+<text x="300" y="92" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">购物系统</text>
+<rect x="401.0" y="68" width="178.0" height="44" rx="8" fill="#1e3a8a" stroke="#1e40af"/>
+<text x="490" y="92" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">买手系统/集运客户端系统</text>
+<rect x="622.0" y="68" width="116.0" height="44" rx="8" fill="#1e3a8a" stroke="#1e40af"/>
+<text x="680" y="92" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">买手/集运客户</text>
+<rect x="802.0" y="68" width="116.0" height="44" rx="8" fill="#1e3a8a" stroke="#1e40af"/>
+<text x="860" y="92" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">工厂</text>
+<rect x="982.0" y="68" width="116.0" height="44" rx="8" fill="#1e3a8a" stroke="#1e40af"/>
+<text x="1040" y="92" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">集运系统</text>
+<text x="1040" y="106" text-anchor="middle" font-size="10" fill="#dbeafe">（仓库作业）</text>
+<text x="110" y="106" text-anchor="middle" font-size="10" fill="#dbeafe">（C 端用户）</text>
+<line x1="110" y1="112" x2="110" y2="2030" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="5 4"/>
+<rect x="105" y="136" width="10" height="1422" rx="3" fill="#bfdbfe" opacity="0.55"/>
+<line x1="300" y1="112" x2="300" y2="2030" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="5 4"/>
+<rect x="295" y="136" width="10" height="1422" rx="3" fill="#bfdbfe" opacity="0.55"/>
+<line x1="490" y1="112" x2="490" y2="2030" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="5 4"/>
+<rect x="485" y="236" width="10" height="1772" rx="3" fill="#bfdbfe" opacity="0.55"/>
+<line x1="680" y1="112" x2="680" y2="2030" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="5 4"/>
+<rect x="675" y="336" width="10" height="1672" rx="3" fill="#bfdbfe" opacity="0.55"/>
+<line x1="860" y1="112" x2="860" y2="2030" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="5 4"/>
+<rect x="855" y="386" width="10" height="72" rx="3" fill="#bfdbfe" opacity="0.55"/>
+<line x1="1040" y1="112" x2="1040" y2="2030" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="5 4"/>
+<rect x="1035" y="436" width="10" height="1522" rx="3" fill="#bfdbfe" opacity="0.55"/>
+<line x1="110" y1="150" x2="300" y2="150" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="153.4" y="131.0" width="103.2" height="17" rx="2" fill="#ffffff"/>
+<text x="205.0" y="143" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">①</tspan> 下单：<tspan fill="#dc2626">支付货款</tspan></text>
+<path d="M300,178 L334,178 L334,200 L300,200" fill="none" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="339.0" y="180.0" width="181.8" height="17" rx="2" fill="#ffffff"/>
+<text x="342" y="191" text-anchor="start" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">②</tspan> 生成购物订单（绑定仓库地址）</text>
+<line x1="300" y1="250" x2="490" y2="250" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="322.1" y="231.0" width="145.8" height="17" rx="2" fill="#ffffff"/>
+<text x="395.0" y="243" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">③</tspan> 推送订单信息（待采购）</text>
+<path d="M490,278 L524,278 L524,300 L490,300" fill="none" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="529.0" y="280.0" width="132.6" height="17" rx="2" fill="#ffffff"/>
+<text x="532" y="291" text-anchor="start" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">④</tspan> 分配采购任务给买手</text>
+<line x1="490" y1="350" x2="680" y2="350" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="536.7" y="331.0" width="96.6" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="343" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑤</tspan> 下发采购任务</text>
+<line x1="680" y1="400" x2="860" y2="400" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="697.7" y="381.0" width="144.6" height="17" rx="2" fill="#ffffff"/>
+<text x="770.0" y="393" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑥</tspan> 向工厂下单并付款采购</text>
+<line x1="860" y1="450" x2="1040" y2="450" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="813.8" y="431.0" width="272.4" height="17" rx="2" fill="#ffffff"/>
+<text x="950.0" y="443" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑦</tspan> 发货至国内仓（生成国内收货单，关联购物订单）</text>
+<line x1="490" y1="500" x2="1040" y2="500" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="679.1" y="481.0" width="181.8" height="17" rx="2" fill="#ffffff"/>
+<text x="770.0" y="493" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑧</tspan> 同步国内收货单信息（买手侧）</text>
+<path d="M1040,528 L1074,528 L1074,550 L1040,550" fill="none" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="1079.0" y="530.0" width="169.8" height="17" rx="2" fill="#ffffff"/>
+<text x="1082" y="541" text-anchor="start" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑨</tspan> 【线下】扫描国内收货单单号</text>
+<path d="M1040,578 L1074,578 L1074,600 L1040,600" fill="none" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="1079.0" y="580.0" width="109.8" height="17" rx="2" fill="#ffffff"/>
+<text x="1082" y="591" text-anchor="start" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑩</tspan> 【线下】拆外包装</text>
+<path d="M1040,628 L1074,628 L1074,650 L1040,650" fill="none" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="1079.0" y="630.0" width="217.8" height="17" rx="2" fill="#ffffff"/>
+<text x="1082" y="641" text-anchor="start" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑪</tspan> 【线下】按购物订单分拣至对应收货车</text>
+<path d="M1040,678 L1074,678 L1074,700 L1040,700" fill="none" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="1079.0" y="680.0" width="229.8" height="17" rx="2" fill="#ffffff"/>
+<text x="1082" y="691" text-anchor="start" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑫</tspan> 上架入库（关联购物订单与买手收货单）</text>
+<line x1="110" y1="750" x2="300" y2="750" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="114.1" y="731.0" width="181.8" height="17" rx="2" fill="#ffffff"/>
+<text x="205.0" y="743" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑬</tspan> 查询我的云仓（按购物订单号）</text>
+<line x1="300" y1="800" x2="1040" y2="800" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="461.1" y="781.0" width="247.8" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="793" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑭</tspan> 查询云仓（商品名称·数量·照片·所在库位）</text>
+<line x1="1040" y1="850" x2="300" y2="850" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="536.7" y="831.0" width="96.6" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="843" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑮</tspan> 返回云仓数据</text>
+<line x1="300" y1="900" x2="110" y2="900" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="129.1" y="881.0" width="151.8" height="17" rx="2" fill="#ffffff"/>
+<text x="205.0" y="893" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑯</tspan> 展示云仓（含照片·库位）</text>
+<line x1="680" y1="950" x2="490" y2="950" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="494.1" y="931.0" width="181.8" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="943" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑰</tspan> 查询我的云仓（按国内收货单）</text>
+<line x1="490" y1="1000" x2="1040" y2="1000" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="646.1" y="981.0" width="247.8" height="17" rx="2" fill="#ffffff"/>
+<text x="770.0" y="993" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑱</tspan> 查询云仓（商品名称·数量·照片·所在库位）</text>
+<line x1="1040" y1="1050" x2="490" y2="1050" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="721.7" y="1031.0" width="96.6" height="17" rx="2" fill="#ffffff"/>
+<text x="770.0" y="1043" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑲</tspan> 返回云仓数据</text>
+<line x1="490" y1="1100" x2="680" y2="1100" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="509.1" y="1081.0" width="151.8" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="1093" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">⑳</tspan> 展示云仓（含照片·库位）</text>
+<line x1="110" y1="1150" x2="300" y2="1150" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="120.4" y="1131.0" width="169.2" height="17" rx="2" fill="#ffffff"/>
+<text x="205.0" y="1143" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉑</tspan> 选择云仓商品·生成国际运单</text>
+<line x1="110" y1="1200" x2="300" y2="1200" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="159.4" y="1181.0" width="91.2" height="17" rx="2" fill="#ffffff"/>
+<text x="205.0" y="1193" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉒</tspan> <tspan fill="#dc2626">支付国际运费</tspan></text>
+<line x1="300" y1="1250" x2="1040" y2="1250" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="514.8" y="1231.0" width="140.4" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="1243" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉓</tspan> 下发国际运单（待出库）</text>
+<path d="M1040,1278 L1074,1278 L1074,1300 L1040,1300" fill="none" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="1079.0" y="1280.0" width="164.4" height="17" rx="2" fill="#ffffff"/>
+<text x="1082" y="1291" text-anchor="start" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉔</tspan> 出库操作（拣货·打包·称重）</text>
+<line x1="1040" y1="1350" x2="300" y2="1350" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="500.4" y="1331.0" width="169.2" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="1343" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉕</tspan> 出库完成·提供轨迹跟踪接口</text>
+<line x1="110" y1="1400" x2="300" y2="1400" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="147.4" y="1381.0" width="115.2" height="17" rx="2" fill="#ffffff"/>
+<text x="205.0" y="1393" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉖</tspan> 跟踪国际运单轨迹</text>
+<line x1="300" y1="1450" x2="1040" y2="1450" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="539.4" y="1431.0" width="91.2" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="1443" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉗</tspan> 拉取轨迹节点</text>
+<line x1="1040" y1="1500" x2="300" y2="1500" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="496.8" y="1481.0" width="176.4" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="1493" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉘</tspan> 返回轨迹（已交航·清关·派送）</text>
+<line x1="300" y1="1550" x2="110" y2="1550" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="159.4" y="1531.0" width="91.2" height="17" rx="2" fill="#ffffff"/>
+<text x="205.0" y="1543" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉙</tspan> 展示实时轨迹</text>
+<line x1="680" y1="1600" x2="490" y2="1600" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="500.4" y="1581.0" width="169.2" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="1593" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉚</tspan> 选择云仓商品·生成国际运单</text>
+<line x1="680" y1="1650" x2="490" y2="1650" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="539.4" y="1631.0" width="91.2" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="1643" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉛</tspan> <tspan fill="#dc2626">支付国际运费</tspan></text>
+<line x1="490" y1="1700" x2="1040" y2="1700" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="699.8" y="1681.0" width="140.4" height="17" rx="2" fill="#ffffff"/>
+<text x="770.0" y="1693" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉜</tspan> 下发国际运单（待出库）</text>
+<path d="M1040,1728 L1074,1728 L1074,1750 L1040,1750" fill="none" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="1079.0" y="1730.0" width="164.4" height="17" rx="2" fill="#ffffff"/>
+<text x="1082" y="1741" text-anchor="start" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉝</tspan> 出库操作（拣货·打包·称重）</text>
+<line x1="1040" y1="1800" x2="490" y2="1800" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="685.4" y="1781.0" width="169.2" height="17" rx="2" fill="#ffffff"/>
+<text x="770.0" y="1793" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉞</tspan> 出库完成·提供轨迹跟踪接口</text>
+<line x1="680" y1="1850" x2="490" y2="1850" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="527.4" y="1831.0" width="115.2" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="1843" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㉟</tspan> 跟踪国际运单轨迹</text>
+<line x1="490" y1="1900" x2="1040" y2="1900" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="724.4" y="1881.0" width="91.2" height="17" rx="2" fill="#ffffff"/>
+<text x="770.0" y="1893" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㊱</tspan> 拉取轨迹节点</text>
+<line x1="1040" y1="1950" x2="490" y2="1950" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="681.8" y="1931.0" width="176.4" height="17" rx="2" fill="#ffffff"/>
+<text x="770.0" y="1943" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㊲</tspan> 返回轨迹（已交航·清关·派送）</text>
+<line x1="490" y1="2000" x2="680" y2="2000" stroke="#334155" stroke-width="1.4" marker-end="url(#arr)"/>
+<rect x="539.4" y="1981.0" width="91.2" height="17" rx="2" fill="#ffffff"/>
+<text x="585.0" y="1993" text-anchor="middle" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#1d4ed8">㊳</tspan> 展示实时轨迹</text>
+<line x1="40" y1="2040" x2="1300" y2="2040" stroke="#e2e8f0" stroke-width="1"/>
+<text x="44" y="2064" font-size="12.5" fill="#475569">说明：</text>
+<text x="44" y="2084" font-size="12.5" fill="#475569">· 购物系统：面向美国 C 端客户，完成下单、<tspan fill="#dc2626">支付货款</tspan>，并填写国内 ABW 仓库地址。</text>
+<text x="44" y="2104" font-size="12.5" fill="#475569">· 买手系统/集运客户端系统：买手入驻平台，承接购物系统订单完成采购付款，工厂将商品快递至国内仓并生成国内收货单。</text>
+<text x="44" y="2124" font-size="12.5" fill="#475569">· 集运系统：依据订单信息与国内收货单，仓库收货后区分商品所属购物订单及对应买手收货单（线下扫码、拆包、分拣至收货车）。</text>
+<text x="44" y="2144" font-size="12.5" fill="#475569">· 云仓可视化：上架入库后，美国 C 端客户可在购物系统按购物订单查询个人云仓（商品名称·数量·照片·所在库位）；买手可在买手系统/集运客户端系统按国内收货单查询个人云仓。</text>
+<text x="44" y="2164" font-size="12.5" fill="#475569">· 国际运单：美国 C 端客户（或买手/集运客户）可分别经购物系统 / 买手系统/集运客户端系统选择云仓商品生成国际运单并支付运费 → 集运系统出库（拣货·打包·称重）→ 集运系统向对应系统提供轨迹跟踪接口 → 用户在对应系统实时跟踪轨迹。</text>
+</svg>
+  </div>
+</body>
+</html>

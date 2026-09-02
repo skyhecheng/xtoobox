@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>集运平台 · 项目启动会议</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    /* ===== 微软发布会 · Fluent 暗色主题 ===== */
+    --bg:#0a0e17;
+    --panel:rgba(255,255,255,.04);
+    --panel2:rgba(255,255,255,.06);
+    --ink:#f4f7fb;            /* 主文字（白） */
+    --muted:#9fadc0;         /* 次要文字 */
+    --muted2:#6b7a90;        /* 弱化文字 */
+    --line:rgba(255,255,255,.10);
+    --line2:rgba(255,255,255,.16);
+    /* 微软强调色 */
+    --ms-blue:#2b88d8;
+    --ms-blue-bright:#5aa9ee;
+    --indigo:#7c93ff;
+    --violet:#b794f6;
+    --emerald:#34d399;
+    --amber:#fbbf24;
+    --rose:#fb7185;
+    --orange:#ff9d4d;
+    --green:#34d399;
+    /* 字号刻度（统一放大、清晰） */
+    --s-2xs:12px; --s-xs:13px; --s-sm:14px; --s-md:15px;
+    --s-lg:17px; --s-xl:21px; --s-2xl:30px; --s-3xl:38px;
+    --page-w:1080px;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{ font-family:"Segoe UI",system-ui,-apple-system,"Microsoft YaHei","PingFang SC",sans-serif;
+        background:
+          radial-gradient(1100px 560px at 82% -12%, rgba(43,136,216,.20), transparent 60%),
+          radial-gradient(900px 520px at -12% 112%, rgba(124,80,220,.16), transparent 55%),
+          var(--bg);
+        color:var(--ink); overflow:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+
+  /* ===== 页面框 ===== */
+  .slide{ display:none; width:100vw; height:100vh; padding:4vh 4vw; }
+  .slide.active{ display:flex; align-items:center; justify-content:center; }
+  .page{ width:min(var(--page-w),94vw); max-height:92vh;
+    background:linear-gradient(180deg, rgba(20,28,46,.92), rgba(12,18,32,.94));
+    border:1px solid var(--line2); border-radius:16px;
+    box-shadow:0 24px 70px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.05);
+    padding:48px 64px; overflow-y:auto; display:flex; flex-direction:column; }
+  .page--center{ justify-content:center; text-align:center; }
+
+  /* 页头（统一 · 左侧 accent 色条） */
+  .pagehead{ margin-bottom:24px; border-bottom:1px solid var(--line); border-left:3px solid var(--ms-blue);
+    padding:2px 0 18px 16px; }
+  .pagehead.center{ text-align:center; border-bottom:none; border-left:none; padding-left:0; }
+  .eyebrow{ font-size:var(--s-xs); font-weight:700; letter-spacing:.18em;
+    text-transform:uppercase; margin-bottom:10px; display:inline-flex; align-items:center; gap:9px; }
+  .eyebrow::before{ content:""; width:28px; height:2px; border-radius:2px; background:currentColor; opacity:.85; }
+  .eyebrow.violet{ color:var(--violet) } .eyebrow.emerald{ color:var(--emerald) }
+  .eyebrow.indigo{ color:var(--ms-blue-bright) } .eyebrow.amber{ color:var(--amber) }
+  .eyebrow.blue{ color:#5aa9ee }
+  .title{ font-size:var(--s-2xl); font-weight:800; line-height:1.14; letter-spacing:-.02em; }
+  .lead{ font-size:var(--s-sm); color:var(--muted); margin-top:10px; line-height:1.65; }
+  .content{ flex:1; min-height:0; display:flex; flex-direction:column; }
+  .content.scroll{ overflow-y:auto; }
+  .page{ font-size:var(--s-xs); line-height:1.62; }
+  h1{ font-size:clamp(44px,5.4vw,68px); font-weight:800; letter-spacing:-.025em; line-height:1.05; }
+
+  /* 章节小标签 */
+  .seclabel{ font-size:var(--s-sm); font-weight:700; letter-spacing:.02em; margin-bottom:8px; color:var(--ink); }
+  .seclabel.emerald{ color:var(--emerald) } .seclabel.indigo{ color:#8fb6f0 }
+
+  /* 通用卡片 */
+  .card{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .infobox{ background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.30); border-radius:10px; padding:10px 12px; }
+  .infobox .h{ font-weight:700; font-size:var(--s-xs); color:#6ee7b7; }
+  .infobox p{ font-size:var(--s-2xs); color:var(--muted); margin-top:3px; line-height:1.45; }
+
+  /* ===== BMC 标准画布 ===== */
+  .bmc{ display:grid; grid-template-columns:repeat(5,1fr); gap:8px; flex:1; min-height:0;
+    grid-template-rows:auto 1fr auto;
+    grid-template-areas:"kp ka vp cr ch" "kr . vp cs ." "ct . vp cs rs"; }
+  .bmc .a-kp{grid-area:kp}.bmc .a-ka{grid-area:ka}.bmc .a-vp{grid-area:vp}.bmc .a-cr{grid-area:cr}
+  .bmc .a-ch{grid-area:ch}.bmc .a-kr{grid-area:kr}.bmc .a-cs{grid-area:cs}.bmc .a-ct{grid-area:ct}.bmc .a-rs{grid-area:rs}
+  .bmc-cell{ border:1px solid var(--line); border-radius:10px; padding:10px 12px; background:var(--panel);
+    display:flex; flex-direction:column; overflow:hidden; }
+  .bmc-cell.vp{ background:linear-gradient(135deg,rgba(124,80,220,.22),rgba(180,80,200,.15)); border-color:rgba(167,139,250,.40); }
+  .bmc-cell.cs{ background:linear-gradient(135deg,rgba(16,185,129,.16),rgba(45,212,191,.10)); border-color:rgba(52,211,153,.35); }
+  .bmc-cell.rs{ background:linear-gradient(135deg,rgba(251,113,133,.14),rgba(251,146,60,.10)); border-color:rgba(251,146,60,.32); }
+  .bmc-cell.kp{ background:linear-gradient(135deg,rgba(251,191,36,.14),rgba(254,240,138,.07)); border-color:rgba(251,191,36,.30); }
+  .bmc-h{ font-size:var(--s-2xs); letter-spacing:.04em; text-transform:uppercase; font-weight:800;
+    margin-bottom:6px; display:block; line-height:1.3; color:var(--ink); }
+  .bmc-num{ display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px;
+    border-radius:50%; background:var(--ms-blue); color:#fff; font-size:9px; font-weight:800; margin-right:5px; vertical-align:middle; }
+  .bmc-list{ list-style:none; padding:0; margin:0; overflow-y:auto; }
+  .bmc-list li{ position:relative; padding-left:12px; font-size:var(--s-xs); line-height:1.55; color:rgba(244,247,251,.80); }
+  .bmc-list li::before{ content:"•"; position:absolute; left:0; color:var(--violet); font-weight:700; }
+  .bmc-list li b{ color:#fff; }
+
+  /* ===== 履约流水线 ===== */
+  .flow-wrap{ overflow-x:auto; scrollbar-width:none; }
+  .flow-wrap::-webkit-scrollbar{ display:none; }
+  .flow-row{ display:flex; flex-flow:row nowrap; align-items:stretch; gap:3px; min-width:min-content; justify-content:center; }
+  .flow-node{ flex:0 0 auto; width:84px; background:var(--panel2); border:1.5px solid rgba(52,211,153,.50); border-radius:10px; padding:8px 4px; text-align:center; }
+  .flow-node .ico{ font-size:17px; }
+  .flow-node .t{ font-weight:600; font-size:var(--s-xs); margin-top:3px; color:#d8fbee; }
+  .flow-node .s{ font-size:10px; margin-top:2px; color:var(--muted2); }
+  .flow-arrow{ flex:0 0 auto; color:var(--muted2); font-weight:700; font-size:13px; align-self:center; }
+
+  /* ===== 三流关系图 ===== */
+  .legend{ display:flex; justify-content:center; gap:22px; font-size:var(--s-xs); color:var(--muted); margin-bottom:14px; }
+  .legend .it{ display:flex; align-items:center; gap:7px; }
+  .legend .bar{ width:22px; height:3px; border-radius:2px; }
+  .arch{ display:flex; justify-content:center; gap:16px; }
+  .box{ border:1.5px solid var(--line2); border-radius:12px; background:var(--panel); padding:12px; flex:0 0 auto; }
+  .box-h{ text-align:center; font-size:var(--s-sm); font-weight:700; padding-bottom:6px; margin-bottom:8px; border-bottom:1px solid var(--line); color:var(--ink); }
+  .bC{ width:210px }.bP{ width:300px }.bF{ width:210px }
+  .n{ border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.05); border-radius:7px; padding:5px 8px; font-size:var(--s-xs); margin-bottom:5px; color:rgba(244,247,251,.82); }
+  .n.root{ background:rgba(94,169,238,.16); border-color:rgba(94,169,238,.50); font-weight:700; color:#cfe6ff; }
+  .n.pm{ background:rgba(43,136,216,.16); border-color:rgba(43,136,216,.50); color:#bfe0ff; }
+  .n.fw{ background:rgba(52,211,153,.14); border-color:rgba(52,211,153,.45); color:#bff3df; }
+  .n.lp{ background:rgba(251,191,36,.14); border-color:rgba(251,191,36,.45); color:#ffe6a8; }
+  .n.big{ justify-content:center; font-weight:700; background:rgba(251,113,133,.14); border-color:rgba(251,113,133,.50); color:#ffd0d8; text-align:center; }
+  .tree{ margin:5px 0 6px; padding:6px 6px 6px 10px; border-left:2px dashed rgba(255,255,255,.26); margin-left:4px; }
+  .tnode{ border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.05); border-radius:5px; padding:3px 7px; font-size:var(--s-xs); display:inline-block; margin-bottom:2px; color:rgba(244,247,251,.80); }
+  .tarrow{ font-size:var(--s-xs); color:#ff9d9d; text-align:center; margin:1px 0 2px 8px; }
+  .wh-grp{ display:flex; gap:5px; }
+  .wh-grp .n{ margin-bottom:0; }
+  .settle{ border:1.5px solid rgba(251,113,133,.45); border-radius:12px; background:rgba(251,113,133,.08); padding:14px 16px; margin-top:18px; }
+  .fn{ display:flex; flex-direction:column; align-items:center; background:rgba(255,255,255,.05); border:1px solid var(--line2); border-radius:7px; padding:7px 10px; min-width:110px; text-align:center; }
+  .fn b{ font-size:var(--s-sm); color:#fff } .fn span{ font-size:var(--s-xs); color:var(--muted); margin-top:1px; }
+  .arrow-red{ color:#ff7a8a; font-size:18px; padding:0 5px; }
+  .note{ font-size:var(--s-xs); color:var(--muted); margin-top:10px; line-height:1.6; display:flex; flex-wrap:wrap; gap:6px; }
+  .note span{ flex:1 1 0; min-width:160px; padding:6px 9px; border:1px solid rgba(251,113,133,.30); border-left:4px solid #ff7a8a; border-radius:6px; background:rgba(251,113,133,.06); font-size:var(--s-xs); color:rgba(244,247,251,.70); }
+
+  /* ===== 收入条 ===== */
+  .rev-bar{ height:22px; border-radius:6px; }
+
+  /* ===== 客户卡片 ===== */
+  .cust-card{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:9px 8px; text-align:center; }
+  .cust-card .ico{ font-size:18px; margin-bottom:3px; }
+  .cust-card .ttl{ font-weight:700; font-size:var(--s-xs); color:var(--ink); }
+  .cust-card .desc{ font-size:10px; color:var(--muted); margin-top:4px; line-height:1.4; }
+  .pill{ display:inline-block; padding:1px 7px; border-radius:999px; font-size:10px; font-weight:600; margin-top:5px; }
+  .pill-sky{ background:rgba(94,169,238,.18);color:#bfe0ff } .pill-indigo{ background:rgba(124,147,255,.18);color:#cdd9ff }
+  .pill-violet{ background:rgba(183,148,246,.18);color:#e0d2ff } .pill-emerald{ background:rgba(52,211,153,.18);color:#bff3df }
+  .pill-orange{ background:rgba(255,157,77,.18);color:#ffd9b3 }
+
+  /* ===== 战略价值卡 ===== */
+  .strat{ background:var(--panel); border:1px solid var(--line); border-left-width:4px; border-radius:10px; padding:10px 12px; display:flex; gap:9px; align-items:flex-start; }
+  .strat .ico{ font-size:16px; flex:0 0 auto; }
+  .strat .h{ font-weight:700; font-size:var(--s-xs); }
+  .strat p{ font-size:11px; color:var(--muted); margin-top:3px; line-height:1.45; }
+  .strat.rose{ border-left-color:#fb7185 } .strat.orange{ border-left-color:#ff9d4d }
+  .strat.amber{ border-left-color:#fbbf24 } .strat.emerald{ border-left-color:#34d399 }
+  .strat.blue{ border-left-color:#5aa9ee } .strat.violet{ border-left-color:#b794f6 }
+  .strat .h.rose{ color:#fda4af } .strat .h.orange{ color:#ffc078 } .strat .h.amber{ color:#fcd34d }
+  .strat .h.emerald{ color:#6ee7b7 } .strat .h.blue{ color:#93c5fd } .strat .h.violet{ color:#d8b4fe }
+
+  /* ===== 项目计划 ===== */
+  .plan-tree{ font-size:var(--s-sm); line-height:1.7; }
+  .plan-l1{ font-weight:700; color:#93c5fd; font-size:var(--s-md); margin:10px 0 3px; }
+  .plan-l2{ font-weight:600; color:#a5b4fc; margin:5px 0 2px; padding-left:14px; }
+  .plan-l3{ color:var(--muted); margin:2px 0 2px; padding-left:32px; font-size:var(--s-xs); }
+  .plan-tag{ display:inline-block; padding:1px 7px; border-radius:999px; font-size:var(--s-xs); font-weight:600; margin-left:5px; }
+
+  /* ===== 封面 KPI ===== */
+  .kpi{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px; box-shadow:0 1px 3px rgba(0,0,0,.3); }
+  .kpi .num{ font-size:var(--s-2xl); font-weight:800; color:#7aa7ee; }
+  .kpi .lbl{ font-size:var(--s-xs); color:var(--muted); margin-top:2px; }
+
+  /* ===== 导航点 ===== */
+  .nav-dots{ position:fixed; right:14px; top:50%; transform:translateY(-50%); z-index:100;
+    display:flex; flex-direction:column; gap:6px; }
+  .dot{ width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,.22); cursor:pointer; transition:all .2s; border:2px solid transparent; }
+  .dot.active{ background:#2b88d8; border-color:#7aa7ee; transform:scale(1.25); }
+  .dot:hover{ background:rgba(255,255,255,.5); }
+  .kbd-hint{ position:fixed; bottom:12px; left:50%; transform:translateX(-50%);
+    font-size:var(--s-xs); color:var(--muted); z-index:100; background:rgba(12,18,32,.85);
+    padding:4px 14px; border-radius:999px; border:1px solid var(--line); }
+
+  @media print{
+    body{ background:#fff !important; overflow:visible; }
+    .slide{ display:flex !important; padding:0; align-items:flex-start; justify-content:center; }
+    .page{ width:100%; max-height:none; background:#fff !important; color:#111 !important;
+      box-shadow:none; border:1px solid #ccc !important; border-radius:0; padding:24px 30px; page-break-after:always; }
+    .page *{ color:#111 !important; }
+    .card,.bmc-cell,.box,.n,.flow-node,.cust-card,.strat,.infobox,.kpi,.fn,.settle,.pill,.tnode,.note span{ background:#fff !important; border-color:#ccc !important; }
+    .pagehead{ border-left-color:#2b88d8 !important; }
+    .nav-dots,.kbd-hint{ display:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV DOTS -->
+<div class="nav-dots" id="dots"></div>
+<div class="kbd-hint">&larr; &rarr; 键或点击圆点切换 &middot; P 打印</div>
+
+<!-- ==================== SLIDE 0: 封面 ==================== -->
+<section class="slide active" data-slide="0">
+  <div class="page page--center">
+    <div class="inline-flex items-center justify-center gap-2 text-blue-300 text-xs font-bold tracking-widest uppercase mb-3">
+      <span class="w-9 h-1.5 bg-indigo-500 rounded"></span> Project Kickoff &middot; 项目启动会议 <span class="w-9 h-1.5 bg-indigo-500 rounded"></span>
+    </div>
+    <h1 class="text-white tracking-tight">集运平台</h1>
+    <p class="text-base text-slate-300 mt-5 max-w-2xl mx-auto leading-relaxed">一端连接海外需求，一端整合国内供应链 —— 用「集运 + 分销」打通跨境履约全链路</p>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 1: BMC ==================== -->
+<section class="slide" data-slide="1">
+  <div class="page">
+    <div class="pagehead">
+      <div class="eyebrow violet">Business Model Canvas &middot; 商业模式画布</div>
+      <h2 class="title">一张画布看懂盈利逻辑</h2>
+      <p class="lead">基于 Osterwalder 九宫格标准布局，核心盈利支点在运费差价（60–70%）、增值操作收费与汇差收益。</p>
+    </div>
+    <div class="content">
+      <div class="bmc">
+        <div class="bmc-cell kp a-kp">
+          <span class="bmc-h"><span class="bmc-num">1</span>关键合作<br><small class="font-normal" style="color:#7f8da3">Key Partners</small></span>
+          <ul class="bmc-list"><li>国际承运商 DHL/FedEx/UPS 等</li><li>清关行</li><li>国内仓库 · 跨境支付通道</li><li>工厂级供应链 · 海外末端派送</li></ul>
+        </div>
+        <div class="bmc-cell a-ka">
+          <span class="bmc-h"><span class="bmc-num">2</span>关键业务<br><small class="font-normal" style="color:#7f8da3">Key Activities</small></span>
+          <ul class="bmc-list"><li>仓储作业（收/理/上/拣/打/出）</li><li>系统研发与运维</li><li>流量获取与转化</li><li>清关履约与客服</li></ul>
+        </div>
+        <div class="bmc-cell vp a-vp">
+          <span class="bmc-h"><span class="bmc-num">4</span>价值主张<br><small class="font-normal" style="color:#a99fe0">Value Propositions</small></span>
+          <ul class="bmc-list"><li>一口价透明运费试算</li><li>集运·履约一体化</li><li>免费仓储（省心）</li><li>PDA 数字化仓储</li><li>轨迹全程可查</li><li>清关实价·中文客服</li><li>个性化打包分装加固</li></ul>
+        </div>
+        <div class="bmc-cell a-cr">
+          <span class="bmc-h"><span class="bmc-num">5</span>客户关系<br><small class="font-normal" style="color:#7f8da3">Customer Relationships</small></span>
+          <ul class="bmc-list"><li>AI 自然对话 + 专属客服</li><li>会员积分·预充值沉淀</li><li>社群运营·复购激励</li><li>FB 等社媒互动</li></ul>
+        </div>
+        <div class="bmc-cell a-ch">
+          <span class="bmc-h"><span class="bmc-num">6</span>渠道通路<br><small class="font-normal" style="color:#7f8da3">Channels</small></span>
+          <ul class="bmc-list"><li>小程序/H5 自助下单</li><li>微信/小红书/抖音引流</li><li>海外网点·加盟推广</li><li>国内同行转介</li></ul>
+        </div>
+        <div class="bmc-cell a-kr">
+          <span class="bmc-h"><span class="bmc-num">3</span>核心资源<br><small class="font-normal" style="color:#7f8da3">Key Resources</small></span>
+          <ul class="bmc-list"><li>国内集运仓</li><li>海外合作集货点</li><li>干线低价运力</li><li>IT 系统 WMS/OMS/TMS</li><li>清关能力</li></ul>
+        </div>
+        <div class="bmc-cell cs a-cs">
+          <span class="bmc-h"><span class="bmc-num">7</span>客户细分<br><small class="font-normal" style="color:#7fcfae">Customer Segments</small></span>
+          <ul class="bmc-list"><li><b>C 端华人：</b>海外华人/留学生/移民家庭（6000万+）</li><li><b>小 B 商家：</b>外贸采购/微商/华人超市</li><li><b>独立站卖家：</b>需稳定履约与海外仓前置</li></ul>
+        </div>
+        <div class="bmc-cell a-ct">
+          <span class="bmc-h"><span class="bmc-num">8</span>成本结构<br><small class="font-normal" style="color:#7f8da3">Cost Structure</small></span>
+          <ul class="bmc-list"><li>国际运输运费（60–70%收入）</li><li>仓库租金 + 人工</li><li>系统研发运维·营销获客</li><li>清关税费·垫付资金成本</li></ul>
+        </div>
+        <div class="bmc-cell rs a-rs">
+          <span class="bmc-h"><span class="bmc-num">9</span>收入来源<br><small class="font-normal" style="color:#e6a59a">Revenue Streams</small></span>
+          <ul class="bmc-list"><li><b>国际运费差价（核心）</b> — 60–70% 收入占比</li><li>包装 / 操作 / 分装 / 加固费 — 毛利 40–70%</li><li>分销佣金 — 视分销占比</li><li>代缴汇差 · 报关清关 — 2–5%</li><li>保险 · 会员充值沉淀 · 其他增值</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 2: 履约 + 客户 + 闭环 ==================== -->
+<section class="slide" data-slide="2">
+  <div class="page">
+    <div class="pagehead">
+      <div class="eyebrow emerald">Fulfillment Pipeline &amp; Customers &middot; 跨境履约 &amp; 客户闭环</div>
+      <h2 class="title">谁在用我们的集运平台 &mdash; 一件商品如何完成跨境履约</h2>
+      <p class="lead">四类核心客群构成需求底座；从下单到派送的 8 步全链路可追溯；「需求聚合&rarr;供应链整合&rarr;履约交付&rarr;资金沉淀&rarr;复购裂变」的商业闭环。</p>
+    </div>
+    <div class="content gap-4">
+      <div>
+        <div class="seclabel indigo">WHO &middot; 谁在用我们的集运平台</div>
+        <div class="grid grid-cols-5 gap-2">
+          <div class="cust-card"><div class="ico">&#x1F392;</div><div class="ttl">海外华人 / 留学生</div><div class="desc">个人自寄、采购国货，高频刚需，看重时效、价格与中文客服。</div><div class="pill pill-sky">高频 · 个人</div></div>
+          <div class="cust-card"><div class="ico">&#x1F6CD;</div><div class="ttl">采购商户 / 买手</div><div class="desc">批量下单、稳定履约，对运费差价与拿价能力高度敏感。</div><div class="pill pill-indigo">批量 · B端</div></div>
+          <div class="cust-card"><div class="ico">&#x1F3EA;</div><div class="ttl">小 B 跨境卖家</div><div class="desc">独立站/微商卖家，需稳定的仓储、分装与一件代发履约。</div><div class="pill pill-violet">稳定 · 履约</div></div>
+          <div class="cust-card"><div class="ico">&#x1F465;</div><div class="ttl">社群团长 / 微商</div><div class="desc">社群集单、裂变获客，是低成本流量与预充值沉淀的关键节点。</div><div class="pill pill-emerald">裂变 · 流量</div></div>
+          <div class="cust-card" style="background:rgba(255,157,77,.12);border-color:rgba(255,157,77,.5)"><div class="ico">&#x1F3F7;</div><div class="ttl" style="color:#ffc078">优质商品分销</div><div class="desc">为海外客户提供精选国货分销，从源头把控品质与价格。</div><div class="pill pill-orange">增值 · 分销</div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="seclabel emerald">PIPELINE &middot; 一件商品如何完成跨境履约（8 步全链路）</div>
+        <div class="flow-wrap">
+          <div class="flow-row">
+            <div class="flow-node"><div class="ico">&#x1F310;</div><div class="t">海外下单</div><div class="s">收货单</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node"><div class="ico">&#x1F4E6;</div><div class="t">预报入库</div><div class="s">国内仓收货</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node"><div class="ico">&#x1F50D;</div><div class="t">拆袋理货</div><div class="s">DWS称重拍照</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node"><div class="ico">&#x1F4DA;</div><div class="t">上架在库</div><div class="s">库位管理</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node"><div class="ico">&#x1F91D;</div><div class="t">集运分装</div><div class="s">合箱/加固</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node"><div class="ico">&#x2708;&#xFE0F;</div><div class="t">国际干线</div><div class="s">航班运输</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node"><div class="ico">&#x1F6C2;</div><div class="t">目的国清关</div><div class="s">合规申报</div></div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node"><div class="ico">&#x1F69A;</div><div class="t">派送完成</div><div class="s">9态跟踪</div></div>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-2.5 mt-2.5">
+          <div class="infobox"><div class="h">国内作业（效率核心）</div><p>预报入库 &rarr; 拆袋理货（PDA 扫单校验）&rarr; 上架 &rarr; 在库。全程拍照称重留证。</p></div>
+          <div class="infobox"><div class="h">集运增值（利润核心）</div><p>合箱、分装、加固、保价。增值服务毛利率 40%–70%，比运费差价更厚。</p></div>
+          <div class="infobox"><div class="h">国际履约（体验核心）</div><p>干线运输 &rarr; 清关 &rarr; 派送，9 态全程轨迹可视，确定性即口碑。</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 3: 三流关系图 ==================== -->
+<section class="slide" data-slide="3">
+  <div class="page">
+    <div class="pagehead center">
+      <div class="eyebrow indigo">Three-Flow Diagram &middot; 三流关系图</div>
+      <h2 class="title">客户 &mdash; 集运平台（清算中枢）&mdash; 集运商</h2>
+      <p class="lead">数据 / 信息流 &middot; 资金流 &middot; 派单流</p>
+    </div>
+    <div class="content gap-3">
+      <div class="legend">
+        <div class="it"><div class="bar" style="background:#3b82f6"></div>数据 / 信息流</div>
+        <div class="it"><div class="bar" style="background:#ef4444"></div>资金流</div>
+        <div class="it"><div class="bar" style="background:#10b981"></div>派单（物流分配）</div>
+      </div>
+
+      <div class="arch">
+        <div class="box bC">
+          <div class="box-h">客户</div>
+          <div class="n root">华人代购</div><div class="n root">美国人 / ABC</div>
+          <div class="n root">货代同行</div><div class="n root">杂货店（批发商）</div>
+          <div class="tree">
+            <div class="tnode">客户（直客）</div>
+            <div class="tarrow">&darr; 发展代理（下线）</div>
+            <div class="tnode">代理 / 下线</div>
+            <div class="tarrow">&darr; 继续发展</div>
+            <div class="tnode">二级代理</div>
+          </div>
+        </div>
+        <div class="box bP">
+          <div class="box-h">集运平台（清算中枢）</div>
+          <div class="n pm">设置客户加盟</div><div class="n pm">营销 / 运营</div>
+          <div class="n pm">集运商工具</div><div class="n pm">客户工具</div>
+          <div class="n big">平台结算账户 / 佣金引擎 / 派单引擎</div>
+          <div class="n pm">佣金体系（按客户设置）</div><div class="n pm">平台派单（策略路由）</div>
+          <div class="n pm">设置集运商加盟</div><div class="n pm">集运商端口</div>
+        </div>
+        <div class="box bF">
+          <div class="box-h">集运商</div>
+          <div style="margin-bottom:5px">
+            <div class="n root">集运商 A</div>
+            <div class="wh-grp"><div class="n fw">仓库 A</div><div class="n fw">仓库 B</div></div>
+            <div class="wh-grp" style="margin-top:4px"><div class="n lp">物流产品 A</div><div class="n lp">物流产品 B</div></div>
+          </div>
+          <div>
+            <div class="n root">集运商 B</div>
+            <div class="wh-grp"><div class="n fw">仓库 A</div><div class="n fw">仓库 B</div></div>
+            <div class="wh-grp" style="margin-top:4px"><div class="n lp">物流产品 A</div><div class="n lp">物流产品 B</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="settle">
+        <div class="font-bold text-[#ff7a8a] text-xs mb-2">资金清算关系（核心）</div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <div class="fn"><b>客户 / 代理</b><span>收取运费</span></div>
+          <div class="arrow-red">&#10140;</div>
+          <div class="fn" style="min-width:150px"><b>平台结算账户</b><span>归集运费&middot;计算佣金&middot;收入确认</span></div>
+          <div class="arrow-red">&#10140;</div>
+          <div class="fn"><b>集运商</b><span>仓储+物流渠道结算</span></div>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap mt-2">
+          <div class="fn"><b>平台结算账户</b><span>按佣金体系计算</span></div>
+          <div class="arrow-red">&#10140;</div>
+          <div class="fn"><b>客户 / 代理账户</b><span>返还佣金&middot;可提现</span></div>
+        </div>
+        <div class="note">
+          <span>&#x2460; 客户发展代理，收取运费进入<b>平台账户</b></span>
+          <span>&#x2461; 平台按佣金体系计算，返还至<b>客户/代理账户</b></span>
+          <span>&#x2462; 客户与代理均可<b>申请提现</b></span>
+          <span>&#x2463; 平台按派单策略分配到不同仓库</span>
+          <span>&#x2464; 集运商按服务+渠道与平台结算</span>
+          <span>&#x2465; 成本：平台与集运商结算</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 4: 收入结构 + 战略价值 ==================== -->
+<section class="slide" data-slide="4">
+  <div class="page">
+    <div class="pagehead">
+      <div class="eyebrow amber">Revenue &amp; Strategic Value &middot; 收入结构 + 战略价值</div>
+      <h2 class="title">钱从哪里来 &mdash; 给集团带来什么价值</h2>
+      <p class="lead">客户先付费后履约，预充值形成无息资金池。集运不仅是独立业务，更是集团能力外溢与生态协同的战略支点。</p>
+    </div>
+    <div class="content scroll gap-4">
+      <div class="card">
+        <div class="font-bold text-amber-400 text-sm mb-3">收入结构（典型占比）</div>
+        <div class="space-y-3" style="max-width:560px">
+          <div>
+            <div class="flex justify-between" style="font-size:var(--s-xs)"><span>国际运费差价</span><span class="text-slate-400">60–70% 收入 &middot; 毛利 10–25%</span></div>
+            <div class="h-2.5 bg-slate-700 rounded-full mt-1 overflow-hidden"><div class="rev-bar bg-amber-400" style="width:65%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between" style="font-size:var(--s-xs)"><span>仓储 / 操作 / 挂号</span><span class="text-slate-400">8–15% 收入 &middot; 毛利 40–70%</span></div>
+            <div class="h-2.5 bg-slate-700 rounded-full mt-1 overflow-hidden"><div class="rev-bar bg-amber-500" style="width:12%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between" style="font-size:var(--s-xs)"><span>分销佣金</span><span class="text-slate-400">视分销占比</span></div>
+            <div class="h-2.5 bg-slate-700 rounded-full mt-1 overflow-hidden"><div class="rev-bar bg-amber-600" style="width:6%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between" style="font-size:var(--s-xs)"><span>关税代缴汇差</span><span class="text-slate-400">2–5% 收入</span></div>
+            <div class="h-2.5 bg-slate-700 rounded-full mt-1 overflow-hidden"><div class="rev-bar bg-amber-300" style="width:4%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between" style="font-size:var(--s-xs)"><span>保险 / 增值 / 其他</span><span class="text-slate-400">1–3% 收入</span></div>
+            <div class="h-2.5 bg-slate-700 rounded-full mt-1 overflow-hidden"><div class="rev-bar bg-amber-200" style="width:3%"></div></div>
+          </div>
+        </div>
+        <div class="mt-3 rounded-lg p-3" style="background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.30);font-size:var(--s-xs); color:var(--muted); line-height:1.6">
+          <b style="color:#fcd34d">资金飞轮：</b>预收运费消除账期 &rarr; 预充值沉淀无息资金 &rarr; 规模拿价压低干线成本 &rarr; 汇差与增值增厚利润 &rarr; 利润反哺获客。
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="font-bold text-rose-400 text-sm mb-3">给集团带来的多维度战略价值</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+          <div class="strat rose"><div class="ico">&#x1F3ED;</div><div><div class="h rose">仓库操作能力外溢 &mdash; 对外做电商操作仓服务</div><p>标准化作业能力产品化，承接整进散出电商操作仓服务，形成新收入来源和行业影响力。</p></div></div>
+          <div class="strat orange"><div class="ico">&#x1F465;</div><div><div class="h orange">面向直客群体 &mdash; 扩大公司客户类型</div><p>直接触达 C 端海外终端消费者，打破原有 B 端结构，增加客户多样性与抗风险能力。</p></div></div>
+          <div class="strat amber"><div class="ico">&#x1F3F7;</div><div><div class="h amber">商品分销前期准备 &mdash; 为海外用户分销铺路</div><p>积累的客户信任、物流网络与支付通道，为后续优质商品分销做好前期准备。</p></div></div>
+          <div class="strat emerald"><div class="ico">&#x1F517;</div><div><div class="h emerald">ABW 项目协同 &mdash; 独立经营构建 + 更好集运到 ABW</div><p>为 ABW 做好独立经营架构，提供更好集运服务，资源复用与流量互导，1+1&gt;2 协同效应。</p></div></div>
+          <div class="strat violet"><div class="ico">&#x1F4BB;</div><div><div class="h violet">技术铺垫 &mdash; 为重构仓库操作系统（速递管家）打底</div><p>集运 WMS 中台沉淀的仓储作业、库位、PDA 数字化能力，可为公司重构仓库操作系统（速递管家）做技术铺垫，减少后续工作量。</p></div></div>
+          <div class="strat blue"><div class="ico">&#x1F4B0;</div><div><div class="h blue">低成本起步 &mdash; 资源基建已具备</div><p>仓库、IT 系统、运力渠道、清关能力均已就绪，属于<b>低风险、高杠杆</b>增量业务。</p></div></div>
+        </div>
+        <div class="mt-3 rounded-lg p-3" style="background:linear-gradient(90deg,rgba(251,113,133,.10),rgba(255,157,77,.08),rgba(251,191,36,.08));border:1px solid rgba(251,113,133,.35);font-size:var(--s-xs); line-height:1.6; color:rgba(244,247,251,.82)">
+          <b style="color:#fb7185">战略总结：</b>集运项目是集团在跨境赛道上的<b>战略支点</b>——既是能快速验证并产生正向现金流的独立业务，又是仓储外溢、客户结构优化、ABW 协同与分销布局的前哨阵地。<b style="color:#fb7185">投入小、见效快、协同大。</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 5: 项目计划 ==================== -->
+<section class="slide" data-slide="5">
+  <div class="page">
+    <div class="pagehead">
+      <div class="eyebrow blue">Project Plan &middot; 项目计划</div>
+      <h2 class="title">三阶段实施路线图</h2>
+      <p class="lead">第一阶段 MVP 验证 &rarr; 第二阶段盈亏平衡 &rarr; 第三阶段规模化</p>
+    </div>
+    <div class="content">
+      <div class="grid grid-cols-2 gap-4 h-full">
+        <div class="card plan-tree" style="overflow-y:auto">
+          <div class="plan-l1">&#x1F4CB; 第一阶段 &middot; MVP 验证<span class="plan-tag bg-blue-500/20 text-blue-200">0–5 月</span></div>
+          <div class="plan-l2">小程序端</div>
+          <div class="plan-l3">下收货单 &middot; 我的云仓 &middot; 充值 &middot; 下国际运单 &middot; 运费计算 &middot; 付款 &middot; 轨迹跟踪 &middot; 售后 &middot; 广告位</div>
+          <div class="plan-l2">PC 端</div>
+          <div class="plan-l3">登录 &middot; 参考现有客户下单原型功能</div>
+          <div class="plan-l2">平台后台</div>
+          <div class="plan-l3">收货单处理 &middot; 入库 DWS &middot; 出库 分装 &middot; 库存 &middot; 物流产品 &middot; 问题件 &middot; 仓库管理</div>
+          <div class="plan-l2">接口</div>
+          <div class="plan-l3">收货单 &middot; 客户源订单 &middot; 国际运单 &middot; 运费计算 &middot; 运单轨迹 &middot; 满足 abw 需求</div>
+
+          <div class="plan-l1">&#x1F4C8; 第二阶段 &middot; 盈亏平衡<span class="plan-tag bg-indigo-500/20 text-indigo-200">6–12 月</span></div>
+          <div class="plan-l2">营销</div>
+          <div class="plan-l3">营销活动 &middot; 优惠券</div>
+          <div class="plan-l2">佣金体系</div>
+          <div class="plan-l2">H5</div>
+
+          <div class="plan-l1">&#x1F680; 第三阶段 &middot; 规模化<span class="plan-tag bg-sky-500/20 text-sky-200">13–24 月</span></div>
+          <div class="plan-l2">官网 &middot; 宣传</div>
+          <div class="plan-l2">官网-集运商端口</div>
+          <div class="plan-l2">官网-客户端 &middot; 升级</div>
+        </div>
+
+        <div class="space-y-3" style="overflow-y:auto">
+          <div class="card" style="background:rgba(43,136,216,.10);border-color:rgba(43,136,216,.40)">
+            <div class="font-bold text-blue-300 text-sm mb-2">阶段里程碑</div>
+            <div class="space-y-2.5" style="font-size:var(--s-xs)">
+              <div class="flex gap-2.5"><span class="shrink-0 w-5.5 h-5.5 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold" style="font-size:9px">1</span><div><b>MVP 闭环</b><br/>借第三方仓轻起步；上线收货+集运分装+轨迹；种子用户跑通模型</div></div>
+              <div class="flex gap-2.5"><span class="shrink-0 w-5.5 h-5.5 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold" style="font-size:9px">2</span><div><b>v1.0 盈亏平衡</b><br/>PDA 数字化、多语、财务计费、营销上线<br/><b style="color:#ff9d4d">目标：月 847kg(空) / 月 7.5t(海)</b></div></div>
+              <div class="flex gap-2.5"><span class="shrink-0 w-5.5 h-5.5 rounded-full bg-sky-500 text-white flex items-center justify-center font-bold" style="font-size:9px">3</span><div><b>规模化</b><br/>直签承运商框架价压成本；扩仓提产能；会员订阅+供应链金融第二曲线</div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="font-bold text-white text-sm mb-2">&#x1F465; 业务部门配合事项</div>
+            <div class="space-y-1.5" style="font-size:var(--s-xs); color:var(--muted); line-height:1.6">
+              <div class="flex gap-2"><span class="font-bold" style="color:#fbbf24">仓库公司</span><span>提供仓库作业 SOP、DWS 设备采购、库位规划方案</span></div>
+              <div class="flex gap-2"><span class="font-bold" style="color:#93c5fd">产品部</span><span>对接承运商 API、确认物流产品报价、清关流程文档</span></div>
+              <div class="flex gap-2"><span class="font-bold" style="color:#6ee7b7">财务部</span><span>确认计费规则、佣金结算周期、预充值资金池合规要求</span></div>
+              <div class="flex gap-2"><span class="font-bold" style="color:#fb7185">客服部</span><span>输出常见问题 FAQ、多语话术模板</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="font-bold text-white text-sm mb-2">&#x1F527; 项目成员分工</div>
+            <div class="grid grid-cols-2 gap-2" style="font-size:var(--s-xs)">
+              <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px"><b style="color:#7aa7ee">产品负责人</b><br/><span class="text-slate-300">需求梳理&middot;原型验收&middot;里程碑把控</span></div>
+              <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px"><b style="color:#7aa7ee">后端开发</b><br/><span class="text-slate-300">API 设计&middot;数据库&middot;接口联调&middot;部署</span></div>
+              <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px"><b style="color:#7aa7ee">测试/QA</b><br/><span class="text-slate-300">功能测试&middot;UAT&middot;性能压测</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 6: 原型演示 ==================== -->
+<section class="slide" data-slide="6">
+  <div class="page page--center">
+    <div class="inline-flex items-center justify-center gap-2 text-blue-300 text-xs font-bold tracking-widest uppercase mb-3">
+      <span class="w-9 h-1.5 bg-indigo-500 rounded"></span> Live Demo &middot; 原型演示 <span class="w-9 h-1.5 bg-indigo-500 rounded"></span>
+    </div>
+    <h1 class="text-white">开始演示第一阶段原型</h1>
+    <p class="text-base text-slate-300 mt-5 max-w-2xl mx-auto leading-relaxed">请产品经理现场演示 MVP 第一阶段的原型，覆盖小程序端、PC 端与平台后台的核心流程，跑通「收货 &rarr; 集运分装 &rarr; 轨迹」闭环。</p>
+    <div class="mt-8 grid grid-cols-3 gap-4 max-w-3xl mx-auto">
+      <div class="kpi" style="text-align:left">
+        <div class="text-2xl mb-2">&#x1F4F1;</div>
+        <div class="font-bold text-white text-sm">小程序端</div>
+        <p class="text-slate-300 text-xs mt-2 leading-relaxed">下收货单 &middot; 我的云仓 &middot; 充值 &middot; 运费计算 &middot; 付款 &middot; 轨迹跟踪</p>
+      </div>
+      <div class="kpi" style="text-align:left">
+        <div class="text-2xl mb-2">&#x1F4BB;</div>
+        <div class="font-bold text-white text-sm">PC 端</div>
+        <p class="text-slate-300 text-xs mt-2 leading-relaxed">登录 &middot; 参考现有客户下单原型 &middot; 后台管理入口</p>
+      </div>
+      <div class="kpi" style="text-align:left">
+        <div class="text-2xl mb-2">&#x1F4D6;</div>
+        <div class="font-bold text-white text-sm">平台后台</div>
+        <p class="text-slate-300 text-xs mt-2 leading-relaxed">收货单处理 &middot; 入库 DWS &middot; 出库分装 &middot; 库存 &middot; 物流产品 &middot; 问题件</p>
+      </div>
+    </div>
+    <div class="mt-7 max-w-2xl mx-auto rounded-xl px-5 py-3" style="background:rgba(43,136,216,.10);border:1px solid rgba(43,136,216,.35)">
+      <p class="text-sm text-slate-200">演示目标：<b style="color:#7aa7ee">种子用户跑通模型 &rarr; 确认里程碑 &rarr; 启动第一周迭代</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 7: 结束页 ==================== -->
+<section class="slide" data-slide="7">
+  <div class="page page--center">
+    <div class="inline-flex items-center justify-center gap-2 text-blue-300 text-xs font-bold tracking-widest uppercase mb-3">
+      <span class="w-9 h-1.5 bg-indigo-500 rounded"></span> Meeting End &middot; 会议结束 <span class="w-9 h-1.5 bg-indigo-500 rounded"></span>
+    </div>
+    <h1 class="text-white">集运平台 &middot; 启动会议</h1>
+    <div class="mt-6 max-w-xl mx-auto rounded-2xl p-7" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12)">
+      <p class="text-base font-semibold text-slate-200 mb-3">感谢各位参会！</p>
+      <p class="text-slate-300 leading-relaxed">下一步：<b style="color:#7aa7ee">确认里程碑 &rarr; 分配任务 &rarr; 启动第一周迭代</b></p>
+    </div>
+  </div>
+</section>
+
+
+<script>
+(function(){
+  var slides=document.querySelectorAll('.slide');
+  var dotsEl=document.getElementById('dots');
+  var cur=0;
+
+  slides.forEach(function(s,i){
+    var d=document.createElement('div'); d.className='dot'+(i===0?' active':'');
+    d.onclick=function(){go(i)};
+    dotsEl.appendChild(d);
+  });
+
+  function go(n){
+    if(n<0||n>=slides.length)return;
+    slides[cur].classList.remove('active');
+    dotsEl.children[cur].classList.remove('active');
+    cur=n;
+    slides[cur].classList.add('active');
+    dotsEl.children[cur].classList.add('active');
+  }
+
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();go(cur+1)}
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();go(cur-1)}
+    else if(e.key==='p'||e.key==='P'){window.print()}
+  });
+
+  var sx=0; document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX});
+  document.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>50){dx>0?go(cur-1):go(cur+1)}
+  });
+})();
+</script>
+</body>
+</html>
